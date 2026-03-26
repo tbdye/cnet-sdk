@@ -1,0 +1,1697 @@
+@DATABASE "Default"
+@NODE "MAIN" "CNet.library Reference Guide"
+@TOC "MAIN"
+
+                     CNet Library Reference Guide V1.0
+                Written and copyright © 1998 by Ray A. Akey
+
+ @{"AccountToID         " LINK "AccountToID"         } - convert user account to unique serial ID
+ @{"AddCredits          " LINK "AddCredits"          } - award file/byte credits to user
+ @{"AddIdentdUser       " LINK "AddIdentdUser"       } - add identd entry for a port/socket combo
+ @{"AllDigits           " LINK "AllDigits"           } - examine a string to see if it contains only numbers
+ @{"AllocText           " LINK "AllocText"           } - allocate a block of subboard data text
+ @{"AlterDate           " LINK "AlterDate"           } - alter an IsDate structure by x days
+ @{"AppendToFile        " LINK "AppendToFile"        } - add text to file with/without newline (0x0A)
+ @{"BitPosition         " LINK "BitPosition"         } - find position of highest SET bit in a bitpattern
+ @{"BuildDir            " LINK "BuildDir"            } - create disk structure specified by given path
+ @{"CNetAddressToAccount" LINK "CNetAddressToAccount"} - find account number for given CNet mail ID
+ @{"CNetAddressType     " LINK "CNetAddressType"     } - examine given mail address and discern its type
+ @{"CNetDisposeDir      " LINK "CNetDisposeDir"      } - free complete file list returned by CNetReadDir()
+ @{"CNetIDToUUCP        " LINK "CNetIDToUUCP"        } - look-up UUCP/MailID from user serial IDNumber
+ @{"CNetReadDir         " LINK "CNetReadDir"         } - read directory into linked list CNetFileEntries
+ @{"CNetSearchEntry     " LINK "CNetSearchEntry"     } - search linked list of CNetFileEntries for file pattern
+ @{"ConvertAccess       " LINK "ConvertAccess"       } - convert flag/bit range string to a packed LONG value
+ @{"CopyFilterText      " LINK "CopyFilterText"      } - copy text, remove MCI/CR/LF, change TABs to spaces
+ @{"CountDirEntries     " LINK "CountDirEntries"     } - count number of entries on list of CNetFileEntries
+ @{"CreateDirEntry      " LINK "CreateDirEntry"      } - allocate & fill memory for a CNetFileEntry structure 
+ @{"CreateFolderName    " LINK "CreateFolderName"    } - fill string with full path to user's mail folder
+ @{"CreateMailDir       " LINK "CreateMailDir"       } - create path where user's mail is to be filed
+ @{"DelayAddItems       " LINK "DelayAddItems"       } - delay the saving of items to subboard data files
+ @{"DirectorySize       " LINK "DirectorySize"       } - Obtain the amount of space used (in bytes)
+ @{"EntryOrdinal        " LINK "EntryOrdinal"        } - find ordinal number of a CNetFileEntry in list
+ @{"ExpandFlags         " LINK "ExpandFlags"         } - convert a packed LONG flags value to a range string
+ @{"FileExists          " LINK "FileExists"          } - check if a file exists
+ @{"FileOLM             " LINK "FileOLM"             } - send OLM to CNet port.
+ @{"FileSize            " LINK "FileSize"            } - check if file exists
+ @{"FindHandle          " LINK "FindHandle"          } - find account to which a handle belongs
+ @{"FindOrdinal         " LINK "FindOrdinal"         } - get the Nth node of an Exec list
+ @{"FindParent          " LINK "FindParent"          } - find parent entry (list) for CNetFileEntry list
+ @{"FindPhone           " LINK "FindPhone"           } - Find account user to which phone number belongs
+ @{"FlushAddItems       " LINK "FlushAddItems"       } - save delayed items to subboard data files
+ @{"FormatVanilla       " LINK "FormatVanilla"       } - Strip MCI and ANSI from file & break lines at 80 cols
+ @{"FormDate            " LINK "FormDate"            } - Create an IsDate structure from an Amiga DateStamp
+ @{"FreeText            " LINK "FreeText"            } - mark a block of subboard text free for future usage
+ @{"GetDirEntry         " LINK "GetDirEntry"         } - get pointer to CNetFileEntry specified ordinal number
+ @{"GetRFCDate          " LINK "GetRFCDate"          } - create an internet RFC date string
+ @{"GetVolAssList       " LINK "GetVolAssList"       } - get list of available volumes and assigns
+ @{"GiveAmigaDays       " LINK "GiveAmigaDays"       } - find number of days diff between a date and 01-01-1978
+ @{"HeaderEntry         " LINK "HeaderEntry"         } - get header entry for CNetFileEntry list
+ @{"HNameToUUCP         " LINK "HNameToUUCP"         } - look-up UUCP/MailID by handle/real name
+ @{"IDToAccount         " LINK "IDToAccount"         } - find account number given unique user serial ID
+ @{"InStr               " LINK "InStr"               } - examine a string to see if second string is sub-string
+ @{"IsNowOnLine         " LINK "IsNowOnLine"         } - examine if user is online
+ @{"LastEntry           " LINK "LastEntry"           } - get the bottom entry of CNetFileEntry list
+ @{"LockAccount         " LINK "LockAccount"         } - lock an account to view/edit/copy attributes
+ @{"LookupIdentd        " LINK "LookupIdentd"        } - remove identd entry for specified socket number
+ @{"MakeDateZone        " LINK "MakeDateZone"        } - Create ASCII date according to given timezone
+ @{"MCIFilter           " LINK "MCIFilter"           } - filter/disable MCI in the given string
+ @{"MCIRemove           " LINK "MCIRemove"           } - remove all MCI from given string
+ @{"NextDirEntry        " LINK "NextDirEntry"        } - find next entry in list of CNetFileEntries
+ @{"NumFromUnique       " LINK "NumFromUnique"       } - find physical subboard number
+ @{"OneLessUser         " LINK "OneLessUser"         } - decrement subboard current usage count/locks by one
+ @{"OneMoreUser         " LINK "OneMoreUser"         } - increase subboard current usage/lock count by one
+ @{"PItemToArgV         " LINK "PItemToArgV"         } - converts CNet parsed items to standard argv array
+ @{"PrevDirEntry        " LINK "PrevDirEntry"        } - find previous entry in list of CNetFileEntries
+ @{"RemoveIdentdUser    " LINK "RemoveIdentdUser"    } - remove identd entry for the specified socket number
+ @{"ReplaceText         " LINK "ReplaceText"         } - replace a block of text in a string
+ @{"SaveFree            " LINK "SaveFree"            } - save subboard text "hole" information
+ @{"StartupInitCache    " LINK "StartupInitCache"    } - initalize the CNet user cache
+ @{"StrToUpper          " LINK "StrToUpper"          } - convert a string to all uppercase
+ @{"UCacheDispose       " LINK "UCacheDispose"       } - free resources used by the user cache
+ @{"UCacheInitUser      " LINK "UCacheInitUser"      } - initialize cache entry for user
+ @{"UCacheLookup        " LINK "UCacheLookup"        } - obtain cache entry for user
+ @{"UCacheRead          " LINK "UCacheRead"          } - read sequential block of accounts from user cache
+ @{"UCacheWrite         " LINK "UCacheWrite"         } - write sequential block of accounts to user cache
+ @{"UltimateFindParts   " LINK "UltimateFindParts"   } - find the number of parts in a range
+ @{"UnLockAccount       " LINK "UnLockAccount"       } - unlock a user account
+ @{"WriteLog            " LINK "WriteLog"            } - add an entry to a standard CNet log
+ @{"XAddCharge          " LINK "XAddCharge"          } - add a charge
+ @{"ZAddItem            " LINK "ZAddItem"            } - Post new Item (post or file) to the message/file base
+ @{"ZAddMessage         " LINK "ZAddMessage"         } - post new message (response) to the message/file base
+ @{"ZGetItem            " LINK "ZGetItem"            } - Load Item (post or file) from the message/file base
+ @{"ZPutItem            " LINK "ZPutItem"            } - Save Item (post or file) to the message/file base
+@ENDNODE
+
+@NODE "AccountToID" "AccountToID"
+@TOC "MAIN"
+
+Function         : AccountToID
+
+Prototype        : LONG AccountToID( LONG account);
+
+Purpose          : Converts a user account number to the user's unique serial ID
+                   Using the serial ID to reference a user makes sense as
+                   no two users will ever have the same serial ID as, unlike
+                   account numbers, serial ID numbers are not reused.
+
+Arguments        : account - the account number of the user whose serial ID
+                             you would like to obtain.
+
+Returns          : the serial ID of the given user account
+
+Known bugs       : does no validity checking on the account number.  YOU
+                   must make sure the account number is greater than zero and
+                   less than myp->Nums[0] where myp->Nums[0] is the highest
+                   account number in use.
+
+See also         : @{"IDToAccount()" LINK "IDToAccount"}
+@ENDNODE
+
+@NODE "AddCredits" "AddCredits"
+@TOC "MAIN"
+
+Function         : AddCredits
+
+Prototype        : void AddCredits(struct @{"ItemType3" LINK "cnetinclude:subs.h/main" 191} *i, short m);
+
+Purpose          : Award user credits ..
+
+Arguments        : i  - item for which the credits are being applied
+                   m  - multiplier - byte/file rewards are multipled by this value.
+
+Returns          : none
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "AddIdentdUser" "AddIdentdUser"
+@TOC "MAIN"
+
+Function         : AddIdentdUser
+
+Prototype        : BYTE AddIdentdUser( short Port, LONG Socket);
+
+Purpose          : Add an identd entry for the given port/socket combo
+
+Arguments        : Port - CNetPort number
+                   Socket - a socket number to associate with the given CNet
+                            port.  Note that more than one socket association
+                            may exist for a given port.
+
+Returns          : 0 on success
+                   1 if MainPort could not be found
+                   2 if resource allocation failed
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "AllDigits" "AllDigits"
+@TOC "MAIN"
+
+Function         : AllDigits
+
+Prototype        : BOOL AllDigits( char *string);
+
+Purpose          : Examine a string to determine if it contains only numeric
+                   characters
+
+Arguments        : string - the string to examine
+                   
+Returns          : TRUE if the source string contains only numeric characters.
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "AllocText" "AllocText"
+@TOC "MAIN"
+
+Function         : AllocText
+
+Prototype        : long AllocText( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s, long length );
+
+Purpose          : Allocate a block of subboard data text.
+
+Arguments        : s      - the subboard in which the desired text is to be
+                            allocated
+                   length - the desired length of text to allocate
+
+Returns          : location (seek value) pertaining to the start of the block
+                   of text allocated.
+
+Known bugs       : none
+
+See also         : @{"FreeText" LINK "FreeText"}
+@ENDNODE
+
+@NODE "AlterDate" "AlterDate"
+@TOC "MAIN"
+
+Function         : AlterDate
+
+Prototype        : void AlterDate( struct @{"IsDate" LINK "cnetinclude:dates.h/main" 4} *date, long i );
+
+Purpose          : Alter an IsDate structure by a given number of days.
+
+Arguments        : date - the IsDate structure to alter.
+                   i    - the number of days by which to alter the date.
+
+Returns          : none
+
+Known bugs       : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "AppendToFile" "AppendToFile"
+@TOC "MAIN"
+
+Function         : AppendToFile
+
+Prototype        : BOOL AppendToFile( char *filename, char *text, BOOL AddCR);
+
+Purpose          : add text to a file with or without appending newline (0x0A)
+
+Arguments        : filename - the full path/filename of the destination file.
+                   text     - the text to be added to the destination file.
+                   AddCR    - FALSE to suppress newline.
+                              TRUE to add newline.
+
+Returns          : TRUE on success; FALSE if error.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "BitPosition" "BitPosition"
+@TOC "MAIN"
+
+Function         : BitPosition
+
+Prototype        : short BitPosition( LONG bitpattern);
+
+Purpose          : find the actual position of the highest SET bit in bitpattern
+                   consider the expression (z = 1L << y)..  this function, when
+                   given z will return the value of y.
+
+Arguments        : bitpattern - the bit mask to examine
+
+Returns          : the actual position of the highest SET bit in bitpattern
+
+Known bugs       : none
+
+See also         :
+@ENDNODE
+
+@NODE "BuildDir" "BuildDir"
+@TOC "MAIN"
+
+Function         : BuildDir
+
+Prototype        : short BuildDir( char *path );
+
+Purpose          : Create the disk structure specified by a given path
+
+Arguments        : path - a string containing the path to be created if
+                   non-existant
+
+Returns          : TRUE if path created or already existant
+                   FALSE if path could not be created
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "CNetAddressToAccount" "CNetAddressToAccount"
+@TOC "MAIN"
+
+Function         : CNetAddressToAccount
+
+Prototype        : short CNetAddressToAccount( char *a );
+
+Purpose          : find the account number that corresponds to a given CNet mail
+                   ID (AKA username or @{"UUCP" LINK "cnetinclude:users.h/main" 154} ID)
+
+Arguments        : a - the mail ID to examine
+
+Returns          : the account number associated with the given mail ID
+
+                   note some special case mappings:
+                   
+                      AREAFIX and ROOT map to account #1
+                      FEEDBACK maps to fake account -1
+                      NEWUSER maps to fake account -2
+                      SYSOP maps to fake account -3
+
+                   a return value of 0 signifies error.
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CNetAddressType" "CNetAddressType"
+@TOC "MAIN"
+
+Function         : CNetAddressType
+
+Prototype        : UBYTE CNetAddressType( char *user);
+
+Purpose          : Examine the given mail address and discern its type
+                   (eg. Internet, local, FTN netmail, etc)
+
+Arguments        : user - the mail address to examine
+
+Returns          : @{"ADDRESSTYPE_*" LINK "cnetinclude:mail.h/main" 292} - see mail.h
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CNetDisposeDir" "CNetDisposeDir"
+@TOC "MAIN"
+
+Function         : CNetDisposeDir
+
+Prototype        : void CNetDisposeDir(struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} **list);
+
+Purpose          : free the COMPLETE file list returned by @{"CNetReadDir()" LINK "CNetReadDir"}
+
+Arguments        : pointer to the list pointer returned by CNetReadDir().
+                   Please note that the expected argument is a
+                   "pointer to a pointer".
+
+                   upon complete resource deallocation, the pointer "pointed
+                   to" by the argument passed to this function is NULLed.
+
+Returns          : none
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CNetIDToUUCP" "CNetIDToUUCP"
+@TOC "MAIN"
+
+Function         : CNetIDToUUCP
+
+Prototype        : char *CNetIDToUUCP( LONG userid );
+
+Purpose          : lookup @{"UUCP" LINK "cnetinclude:users.h/main" 154}/MailID from user serial IDNumber
+
+Arguments        : userid - the serial ID for which a mail ID look-up is
+                            desired.
+
+Returns          : the mail ID associated with the given ID number.
+                   a zero-length return string signifies no match.
+
+Known bugs       : none
+
+See also         : none
+@ENDNODE
+
+@NODE "CNetReadDir" "CNetReadDir"
+@TOC "MAIN"
+
+Function         : CNetReadDir
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *CNetReadDir(char *path, UBYTE recurse);
+
+Purpose          : Read a complete directory into a linked list of CNetFileEntry
+                   structures with parent and child directory retention; with
+                   recurse option.
+
+Arguments        : path    - full path to the directory to be read.
+                   recurse - TRUE to recurse into sub-directories,
+                             FALSE to suppress recursion.
+
+Returns          : pointer to the TOP item in the resultant linked list
+                   of CNetFileEntry structures.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CNetSearchEntry" "CNetSearchEntry"
+@TOC "MAIN"
+
+Function         : CNetSearchEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *CNetSearchEntry(struct CNetFileEntry *list, struct CNetFileEntry **destlist, char *pattern, UBYTE recurse);
+
+Purpose          : Search a linked list of CNetFileEntries for a given file pattern.
+
+Arguments        : list     - the list of CNetFileEntry structures to search
+                   destlist - a pointer to a list pointer that will be used
+                              to store the address of the TOP item in a new
+                              linked list of search matches.
+                   pattern  - pointer to a filename or pattern to search for.
+                   recurse  - TRUE  = recurse into subdirectories
+                              FALSE = suppress recursion
+
+Notes            : if the pointer address contained in destlist is NULL,
+                   the address of the newly created linked list is stored
+                   there and a new list is created.  If destlist is non-NULL,
+                   the search entries are appended to the existing list.
+
+                   If recursion is enabled, a full tree of linked lists will
+                   be created.  Pay particular attention to this in cases
+                   where large directories may be searched.  Recursion can
+                   be a large memory resource hog.
+
+Returns          : pointer to the list of search matches
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "ConvertAccess" "ConvertAccess"
+@TOC "MAIN"
+
+Function         : ConvertAccess
+
+Prototype        : long ConvertAccess( char *s );
+
+Purpose          : Converts a flag/bit range string to a packed LONG value
+
+Arguments        : s - the string containing the bit range to pack
+
+Returns          : the packed LONG representation of the bit/flag range
+
+Known bugs       : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "CopyFilterText" "CopyFilterText"
+@TOC "MAIN"
+
+Function         : CopyFilterText
+
+Prototype        : void CopyFilterText( char *dest, char *source);
+
+Purpose          : copies the source string to the given destination, removing MCI,
+                   CR/LF and, converting each TAB to 3 spaces in the process.
+
+                   this is the function used to prepare text to be displayed in
+                   CNet GUIs
+
+Arguments        : dest   - pointer to a string where the filtered text is placed.
+                   source - string containing the text to copy and filter.
+                   
+Returns          : none
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CountDirEntries" "CountDirEntries"
+@TOC "MAIN"
+
+Function         : CountDirEntries
+
+Prototype        : LONG CountDirEntries(struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *list);
+
+Purpose          : Count the number of entries on the current linked list of
+                   CNetFileEntries (non-inclusive of parent and child entries)
+
+Arguments        : the list to examine
+
+Returns          : the number of file and directories in the list.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CreateDirEntry" "CreateDirEntry"
+@TOC "MAIN"
+
+Function         : CreateDirEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *CreateDirEntry(struct @{"FileInfoBlock" LINK "include:dos/dos.h/main" 60} *fib);
+
+Purpose          : Allocate memory for a CNetFileEntry structure and return a
+                   pointer to the allocated, initialized and filled
+                   CNetFileEntry structure.
+
+                   see the CNetFileEntry structure in include/files.h for a
+                   description of the variables/fields within.
+
+Arguments        : fib - a FileInfoBlock containing the information for the
+                         entry to be created.
+
+Returns          : pointer to the resultant CNetFileEntry structure.
+                   NULL on failure
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "CreateFolderName" "CreateFolderName"
+@TOC "MAIN"
+
+Function         : CreateFolderName
+
+Prototype        : UBYTE CreateFolderName(char *destpath, char *UUCP, char *foldername);
+
+Purpose          : Fill a string with the full path to a user's mail folder.
+
+Arguments        : destpath   - the destination string to receive the user's mail
+                                path.
+                   @{"UUCP" LINK "cnetinclude:users.h/main" 154}       - the mail ID of a given user
+                   foldername - the name of the desired folder .
+
+Returns          : currently, always 0
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "CreateMailDir" "CreateMailDir"
+@TOC "MAIN"
+
+Function         : CreateMailDir
+
+Prototype        : void CreateMailDir( char *uucpid);
+
+Purpose          : Creates the physical disk path where a user's mail will
+                   be filed.
+
+Arguments        : uucpid - @{"UUCP" LINK "cnetinclude:users.h/main" 154}/mail ID of the user
+
+Returns          : none
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "DelayAddItems" "DelayAddItems"
+@TOC "MAIN"
+
+Function         : DelayAddItems
+
+Prototype        : void DelayAddItems( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s );
+
+Purpose          : Delay the saving of items to subboard data files
+
+Arguments        : s - the subboard in which a delay is desired
+
+Notes            : It is sometimes desirable (eg. when importing/posting many
+                   items/messages) to delay the actual saving of those items
+                   to CNet data files until all items for a particular subboard
+                   are processed. This function accomplishes that task.
+
+                   Make sure to call @{"FlushAddItems" LINK "FlushAddItems"} after all message/item
+                   posting/importing is complete.
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : FlushAddItems
+@ENDNODE
+
+@NODE "DirectorySize" "DirectorySize"
+@TOC "MAIN"
+
+Function         : DirectorySize
+
+Prototype        : ULONG DirectorySize( char *dir, BPTR lock );
+
+Purpose          : Obtain the amount of space (in bytes) occupied by the files in a
+                   directory (non-recursive)
+
+Arguments        : dir  - optional name of directory to be examined
+                   lock - optional lock pertaining to directory to be examined
+
+Notes            : One of the arguments must be supplied.  If a lock is
+                   specified, the dir arguent is ignored.
+
+Returns          : size, in bytes, occupied by files in the directory
+
+Known bugs       : 4 GB limitation on total size of directory.  Anything larger
+                   will roll this value.
+@ENDNODE
+
+@NODE "EntryOrdinal" "EntryOrdinal"
+@TOC "MAIN"
+
+Function         : EntryOrdinal
+
+Prototype        : LONG EntryOrdinal(struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *entry, struct CNetFileEntry *list);
+
+Purpose          : Find the ordinal number of a CNetFileEntry in the given list
+
+Arguments        : entry - pointer to the entry to be located
+                   list  - pointer to the list in which the given entry is located
+
+Returns          : the ordinal number of the given entry
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "ExpandFlags" "ExpandFlags"
+@TOC "MAIN"
+
+Function         : ExpandFlags
+
+Prototype        : void ExpandFlags( long def, char *where );
+
+Purpose          : Convert a packed LONG value to a range string.
+
+Arguments        : def   - the packed long value representing up to 32 discrete
+                           flags/bits
+                   where - pointer to the destination string.
+
+Returns          : none
+
+Known bugs       : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "FileExists" "FileExists"
+@TOC "MAIN"
+
+Function         : FileExists
+
+Prototype        : short FileExists( char *filename);
+
+Purpose          : Check if a file exists
+
+Arguments        : filename - pull path to desired file
+
+Returns          : TRUE if file exists, FALSE otherwise
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "FileOLM" "FileOLM"
+@TOC "MAIN"
+
+Function         : FileOLM
+
+Prototype        : UBYTE FileOLM(struct @{"PortData" LINK "cnetinclude:ports.h/main" 135} *z, char *text, short id, long flags);
+
+Purpose          : Send an OLM to a CNet port.
+
+Arguments        : z     - optional PortData pointer of sender
+                   text  - the OLM text to send
+                   id    - account number of the recipient
+                   flags - additional attributes to be applied to the OLM 
+                           currently only OLM_BROADCAST is available
+
+Returns          : TRUE if OLM saved successfully
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "FileSize" "FileSize"
+@TOC "MAIN"
+
+Function         : FileSize
+
+Prototype        : LONG FileSize( char *Name);
+
+Purpose          : Get the size of file
+
+Arguments        : Name - the full path and filename of the file to examine.
+
+Returns          : the size of the file.
+
+Known bugs       : limited to file sizes of 4GB or less.
+
+See also         : 
+@ENDNODE
+
+@NODE "FindHandle" "FindHandle"
+@TOC "MAIN"
+
+Function         : FindHandle
+
+Prototype        : long FindHandle( short *n, char *name, short id );
+
+Purpose          : Find the account number of the user to which a
+                   handle belongs.
+
+Arguments        : n    = pointer to the variable to receive the account
+                          to which the handle belongs
+                   name = the handle being queried
+                   id   = an optional account number for handle verification
+
+Description      : If id is non-zero, this function will perform a
+                   verification and return TRUE if the given handle
+                   belongs to the given account (id)
+
+                   if id is zero, this function will perform a search and,
+                   if the handle was found, will fill n with the
+                   accountnumber of the user to whom it belongs and
+                   subsequently return TRUE.
+                   
+
+Returns          : TRUE if the handle was found/verified
+                   FALSE if the handle was not found/verified
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "FindOrdinal" "FindOrdinal"
+@TOC "MAIN"
+
+Function         : FindOrdinal
+
+Prototype        : struct Node *FindOrdinal( struct List *list, short n);
+
+Purpose          : Return the Nth node of an Exec list.
+
+Arguments        : List - an Exec list pointer in which the desired node resides
+                   N    -  the number of the desired node
+                   
+Returns          : Nth node in the Exec list
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "FindParent" "FindParent"
+@TOC "MAIN"
+
+Function         : FindParent
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *FindParent(struct CNetFileEntry *list);
+
+Purpose          : Find the parent entry for the current list, if existant.
+
+Arguments        : list - the list to examine
+
+Returns          : pointer to the PARENT dir if found
+                   returns pointer to the same list passed as list arg if
+                   parent not found/non-existant (eg. current list is ROOT)
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "FindPhone" "FindPhone"
+@TOC "MAIN"
+
+Function         : FindPhone
+
+Prototype        : long FindPhone( short *n, char *phone, short id );
+
+Purpose          : Find the account number of the user to which a
+                   phone number belongs.
+
+Arguments        : n     = pointer to the variable to receive the account
+                           to which the phone number belongs
+                   phone = the phone number being queried
+                   id    = an optional account number for phone number
+                           verification
+
+Description      : If id is non-zero, this function will perform a
+                   verification and return TRUE if the given phone number
+                   belongs to the given account (id)
+
+                   if id is zero, this function will perform a search and,
+                   if the phone number was found, will fill n with the
+                   accountnumber of the user to whom it belongs and
+                   subsequently return TRUE.
+                   
+
+Returns          : TRUE if the phone nuber was found/verified
+                   FALSE if the phone number was not found/verified
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "FlushAddItems" "FlushAddItems"
+@TOC "MAIN"
+
+Function         : FlushAddItems
+
+Prototype        : void FlushAddItems( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s );
+
+Purpose          : Save delayed items to CNet data files
+
+Arguments        : s - the subboard in which item adding was delayed
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : DelayAddItems
+@ENDNODE
+
+@NODE "FormatVanilla" "FormatVanilla"
+@TOC "MAIN"
+
+Function         : FormatVanilla
+
+Prototype        : void FormatVanilla( BPTR in, BPTR out );
+
+Purpose          : Strip all MCI and ANSI from the given file
+                   Also breaks lines at 80 columns.
+
+Arguments        : in  = file handle of the file to be formatted
+                   out = file handle of the file to received the formatted
+                         output
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "FormDate" "FormDate"
+@TOC "MAIN"
+
+Function         : FormDate
+
+Prototype        : void FormDate( struct @{"IsDate" LINK "cnetinclude:dates.h/main" 4} *date, long *parts );
+
+Purpose          : Create an IsDate structure from an Amiga DateStamp
+
+Arguments        : date -  The CNet IsDate structure to receive date
+                           information
+                   parts - The Amiga DateStamp format (an array of 2 LONG
+                           integers) to be converted to IsDate
+
+Returns          : none
+
+Known bugs       : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "FreeText" "FreeText"
+@TOC "MAIN"
+
+Function         : FreeText
+
+Prototype        : long FreeText( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s, long pos, long length );
+
+Purpose          : Mark a block of subboard text free for future usage.
+
+Arguments        : s      - the subboard to which the block applies
+                   pos    - the start (seek) value of the text block in the
+                            _text file
+                   length - the length of the block to be freed.
+
+Returns          : the start position of the block freed
+
+See Also         : @{"AllocText" LINK "AllocText"}
+@ENDNODE
+
+@NODE "GetDirEntry" "GetDirEntry"
+@TOC "MAIN"
+
+Function         : GetDirEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *GetDirEntry(LONG ordinal, struct CNetFileEntry *list);
+
+Purpose          : Get a pointer to the CNetFileEntry specified by the ordinal
+                   number, with the first valid list entry being entry number
+                   ** 1 **
+
+                   (entry #0 contains the information about the directory itself)
+
+Arguments        : ordinal - the ordinal number of the entry to locate.
+                   list    - the CNetFileEntry list pointer, as returned by
+                             @{"CNetReadDir()" LINK "CNetReadDir"}.
+
+Returns          : pointer to the ordinal entry or NULL if not
+                   found/non-existant.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "GetRFCDate" "GetRFCDate"
+@TOC "MAIN"
+
+Function         : GetRFCDate
+
+Prototype        : void GetRFCDate( char *datedest);
+
+Purpose          : Create an internet RFC date string representing the current
+                   time.
+
+                   note that this function gets GMT information from
+                   locale.library, which means that the sysop user must set his
+                   local timezone using the Workbench locale preferences editor.
+
+Arguments        : datedest - pointer to the string in which this function
+                   places the RFC format date.
+
+Returns          : none
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "GetVolAssList" "GetVolAssList"
+@TOC "MAIN"
+
+Function         : GetVolAssList
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *GetVolAssList(void);
+
+Purpose          : Get a list of available volumes and assigns
+
+Arguments        : none
+
+Returns          : a pointer to a linked list of CNetFileEntry structures
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "GiveAmigaDays" "GiveAmigaDays"
+@TOC "MAIN"
+
+Function         : GiveAmigaDays
+
+Prototype        : long GiveAmigaDays( struct @{"IsDate" LINK "cnetinclude:dates.h/main" 4} *date );
+
+Purpose          : Find the number of days difference between the given date
+                   and January 01, 1978
+
+Arguments        : date - a CNet IsDate structure repsenting the date to be
+                          compared
+
+Returns          : the number of days difference between the given date and
+                   January 01, 1978
+
+Known bugs       : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "HeaderEntry" "HeaderEntry"
+@TOC "MAIN"
+
+Function         : HeaderEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *HeaderEntry(struct CNetFileEntry *anyentry);
+
+Purpose          : Get the header entry for the current list.
+
+                   The header entry contains the directory name of the current
+                   list as its filename attribute.
+
+Arguments        : anyentry - a pointer to any entry in the list of
+                   CNetFileEntries
+
+Returns          : the header entry
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "HNameToUUCP" "HNameToUUCP"
+@TOC "MAIN"
+
+Function         : HNameToUUCP
+
+Prototype        : char *HNameToUUCP( char *hname );
+
+Purpose          : look-up @{"UUCP" LINK "cnetinclude:users.h/main" 154}/MailID by handle/real name
+
+Arguments        : hname - the handle or name of the user to look-up.
+
+Returns          : returns the mail ID associated with the given handle or real name.
+
+                   Note some special cases:
+                   
+                      FEEDBACK, NEWUSER, SYSOP, AREAFIX and POSTMASTER and return "SYSOP"
+                      ROOT returns the mail ID of account #1
+
+                   Note that a handle match will override a real name match.
+
+                   A 0 length string ("") is returned if no mail ID is found
+                   for the given hname.
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "IDToAccount" "IDToAccount"
+@TOC "MAIN"
+
+Function         : IDToAccount
+
+Prototype        : short IDToAccount( LONG userid );
+
+Purpose          : find the account number given a unique user serial ID
+
+Arguments        : userid - the serial ID of the used to examine.
+
+Returns          : the account number associated with the given serial ID
+                   or 0 if not found.
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "InStr" "InStr"
+@TOC "MAIN"
+
+Function         : InStr
+
+Prototype        : short InStr( char *string, char *isin );
+
+Purpose          : Examine a string of characters to see if a second string is a
+                   sub-string.
+
+Arguments        : string - the source string in which the substring possibly exists.
+                   isin   - the sub-string for which to search
+                   
+Returns          : the source string start location/offset of the substring.
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "IsNowOnLine" "IsNowOnLine"
+@TOC "MAIN"
+
+Function         : IsNowOnLine
+
+Prototype        : struct @{"PortData" LINK "cnetinclude:ports.h/main" 135} *IsNowOnLine(struct @{"MainPort" LINK "cnetinclude:control.h/main" 99} *myp, short acc );
+
+Purpose          : examine whether or not the user pertaining to a given account
+                   is online
+
+Arguments        : myp - a pointer to CNet's global MainPort structure
+                   acc - the account number of the user who is to be located
+
+Returns          : pointer to the PortData (z) structure of the online user.
+                   NULL if the user is not online.
+
+Known bugs       : none
+
+See also         :
+@ENDNODE
+
+@NODE "LastEntry" "LastEntry"
+@TOC "MAIN"
+
+Function         : LastEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *LastEntry(struct CNetFileEntry *anyentry);
+
+Purpose          : Get the bottom entry of the current list.
+
+Arguments        : anyentry - a pointer to any entry in the list of
+                   CNetFileEntries
+
+Returns          : pointer to the last file entry in the list
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "LockAccount" "LockAccount"
+@TOC "MAIN"
+
+Function         : LockAccount
+
+Prototype        : struct @{"UserData" LINK "cnetinclude:users.h/main" 67} *LockAccount( short acc );
+
+Purpose          : Lock an account so one may examine or alter account
+                   attributes.
+
+Arguments        : acc - the account number of the user to be locked.
+
+Returns          : pointer to the UserData of the desired account.
+
+Notes            : the returned pointer is only valid until UnLockAccount
+                   is invoked.
+
+                   Each LockAccount() must be followed by an invokation
+                   of @{"UnLockAccount()" LINK "UnLockAccount"}
+
+                   Failure to unlock the account or holding an extremely long
+                   hold on a user account lock may result in a degradation
+                   in efficiency and/or possible deadlocks if LockAccount is
+                   called twice in succession on the same account.
+
+                   The best way to deal with this is lock the account, copy or
+                   assign the required UserData attribute(s) to another
+                   variable or temporary UserData structure and then
+                   immediately unlock the account.
+
+See also         : UnLockAccount
+@ENDNODE
+
+@NODE "LookupIdentd" "LookupIdentd"
+@TOC "MAIN"
+
+Function         : LookupIdentd
+
+Prototype        : short LookupIdentd( ULONG Socket);
+
+Purpose          : Remove identd entry for the specified socket number
+
+Arguments        : Socket - the socket number pertaining to the identd entry
+                            to be located
+
+Returns          : CNet PORT number or -1 if not found.
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "MakeDateZone" "MakeDateZone"
+@TOC "MAIN"
+
+Function         : MakeDateZone
+
+Prototype        : void MakeDateZone(struct @{"IsDate" LINK "cnetinclude:dates.h/main" 4} *date, char *whereto, char **text, BYTE tz, BYTE form);
+
+Purpose          : Create an ASCII readable date string according to a given
+                   timezone.
+
+Arguments        : date    - CNet IsDate structure representing the time to be
+                             converted to ASCII
+                   whereto - the destination string pointer.
+                   text    - pointer to BBSTEXT line 1070 (bm[1069])
+                             or a pointer to the string "%s %2d-%s-%d %2d:%02d%c"
+                   tz      - integer representing the output time zone with
+                             reference to the BBS time zone.
+                   form    - 0 = AM/PM format
+                             1 = 24 hour format
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "MCIFilter" "MCIFilter"
+@TOC "MAIN"
+
+Function         : MCIFilter
+
+Prototype        : void MCIFilter( char *text, LONG length, short flags);
+
+Purpose          : filter MCI in the given string. (this function changes
+                   CTRL-Y to '\' and/or CTRL-Q to '{')
+
+Arguments        : flags ->  1 = filter CTRL-Y
+                             2 = filter CTRL-Q
+                             3 = filter both
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "MCIRemove" "MCIRemove"
+@TOC "MAIN"
+
+Function         : MCIRemove
+
+Prototype        : char *MCIRemove(char *text);
+
+Purpose          : remove all MCI from a given string.
+
+Arguments        : text - pointer to a string from which MCI is to be removed.
+
+Returns          : a pointer to the same memory space passed to this function.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "NextDirEntry" "NextDirEntry"
+@TOC "MAIN"
+
+Function         : NextDirEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *NextDirEntry(struct CNetFileEntry *list, struct CNetFileEntry *nowentry);
+
+Purpose          : Find the next entry in the list of CNetFileEntries
+
+Arguments        : list     - the list containing the entry to find
+                   nowentry - pointer to the current entry
+
+Returns          : pointer to the entry successive to nowentry
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "NumFromUnique" "NumFromUnique"
+@TOC "MAIN"
+
+Function         : NumFromUnique
+
+Prototype        : short NumFromUnique( char *gokeyword );
+
+Purpose          : Find the physical subboard number associated with
+                   a given subboard GO keyword/argument.
+
+Arguments        : gokeyword - the go keyword for a given subboard.
+                   
+Returns          : physical subboard number for an identical (case insensitive)
+                   match of subboard go keyword (AKA @{"SubboardType4.SubDirName" LINK "cnetinclude:subs.h/main" 275})
+
+                   -1 if error or no match
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "OneLessUser" "OneLessUser"
+@TOC "MAIN"
+
+Function         : OneLessUser
+
+Prototype        : void OneLessUser( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s );
+
+Purpose          : Decrement the subboard lock by one.
+
+Arguments        : s - the subboard to unlock
+
+Notes            : the subboard is only unlocked if the @{"OneMoreUser()" LINK "OneMoreUser"}
+                   call was an exclusive lock or if this OneLessUser()
+                   call applies to the last instance of OneMoreUser().
+
+Returns          : none
+
+Known bugs       :
+
+See Also         : OneMoreUser
+@ENDNODE
+
+@NODE "OneMoreUser" "OneMoreUser"
+@TOC "MAIN"
+
+Function         : OneMoreUser
+
+Prototype        : UBYTE OneMoreUser( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s, UBYTE lock );
+
+Purpose          : increase a subboard's current usage count by one
+
+Arguments        : s - the applicable subboard
+                   lock - TRUE or FALSE if this should also be an exclusive lock.
+
+Returns          : TRUE if the usage count/lock was incremented/applied.
+
+Known bugs       : none
+
+See Also         : OneLessUser
+@ENDNODE
+
+@NODE "PItemToArgV" "PItemToArgV"
+@TOC "MAIN"
+
+Function         : PItemToArgV
+
+Prototype        : void PItemToArgV( short portnum, char *argv[] );
+
+Purpose          : converts CNet parsed items (@{"z.PItem" LINK "cnetinclude:ports.h/main" 333}) to standard varargs format.
+
+Arguments        : portnum - the port number containing the parsed items list
+                             to convert.
+                   argv    - an array of char * pointers to be filled.
+                             the array must be declared as per the following
+                             pseudo-C code:
+
+                                char *argv[PITEM_MAX];
+
+                             @{"PITEM_MAX" LINK "cnetinclude:ports.h/main" 22} is defined in ports.h
+
+Returns          : none
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "PrevDirEntry" "PrevDirEntry"
+@TOC "MAIN"
+
+Function         : PrevDirEntry
+
+Prototype        : struct @{"CNetFileEntry" LINK "cnetinclude:files.h/main" 4} *PrevDirEntry(struct CNetFileEntry *list, struct CNetFileEntry *nowentry);
+
+Purpose          : Find the previous entry in the list of CNetFileEntries
+
+Arguments        : list     - the list containing the entry to find
+                   nowentry - pointer to the current entry
+
+Returns          : pointer to the entry previous to nowentry
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "RemoveIdentdUser" "RemoveIdentdUser"
+@TOC "MAIN"
+
+Function         : RemoveIdentdUser
+
+Prototype        : BYTE RemoveIdentdUser( ULONG Socket);
+
+Purpose          : Remove identd entry for the specified socket number
+
+Arguments        : Socket - the socket number pertaining to the identd entry
+                            to be removed
+
+Returns          : 0 on success
+                   1 if MainPort could not be found
+                   2 if no entry exists for the given Socket
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "ReplaceText" "ReplaceText"
+@TOC "MAIN"
+
+Function         : ReplaceText
+
+ProtoType        : short ReplaceText( char *line, char *from, char *with );
+
+Purpose          : Replace a block of text in a string
+
+Arguments        : line - the source line in which exists the text to be replaced
+                   from - the text to replace
+                   with - the text to replace it with
+
+Returns          : the number of instances replaced
+
+Known bugs       : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "SaveFree" "SaveFree"
+@TOC "MAIN"
+
+Function         : SaveFree
+
+Prototype        : long SaveFree( struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s );
+
+Purpose          : Save the list of "holes" that are existant in the
+                   subboard data file(s).
+
+Arguments        : s - the subboard to which this command is applied.
+
+Returns          : Currently, always TRUE (1)
+
+Known bugs       : none
+
+See Also         :
+@ENDNODE
+
+@NODE "StartupInitCache" "StartupInitCache"
+@TOC "MAIN"
+
+Function         : StartupInitCache
+
+Prototype        : void StartupInitCache(void);
+
+Purpose          : initalize the CNet user cache
+
+Notes            : There is no need for this function to be called externally.
+                   It is called when Control starts up.
+
+Arguments        : none
+
+Returns          : none
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "StrToUpper" "StrToUpper"
+@TOC "MAIN"
+
+Function         : StrToUpper
+
+Prototype        : void StrToUpper( char *string);
+
+Purpose          : Convert a string to all uppercase
+
+Arguments        : string - the string to convert
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "UCacheDispose" "UCacheDispose"
+@TOC "MAIN"
+
+Function         : UCacheDispose
+
+Prototype        : void LIBUCacheDispose(void);
+
+Purpose          : Free all resources used by the user cache.
+
+Notes            : Under normal usage, this function should never be required and
+                   its use other than for CNet shutdown purposes will most likely
+                   degrade system performance.
+
+                   Control calls this function to free all cache memory before
+                   exiting.
+
+Arguments        : none
+
+Returns          : none
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "UCacheInitUser" "UCacheInitUser"
+@TOC "MAIN"
+
+Function         : UCacheInitUser
+
+Prototype        : struct @{"CNUserCache" LINK "cnetinclude:users.h/main" 415} *LIBUCacheInitUser(short account);
+
+Purpose          : Initialize a cache entry for the user belonging to the
+                   specified account.
+
+Notes            : Do NOT call this function on a previously initialized user.
+                   Check for this case by using @{"UCacheLookup()" LINK "UCacheLookup"} first.
+                   
+                   In general, the user cache functions should not be required
+                   as @{"LockAccount()" LINK "LockAccount"} and @{"UnLockAccount()" LINK "UnLockAccount"} support user cacheing
+                   internally.
+
+Arguments        : account - the account number of the user to cache.
+
+Returns          : pointer to the initialized user cache entry
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "UCacheLookup" "UCacheLookup"
+@TOC "MAIN"
+
+Function         : UCacheLookup
+
+Prototype        : struct @{"CNUserCache" LINK "cnetinclude:users.h/main" 415} *LIBUCacheLookup(short account)
+
+Purpose          : Obtain the existing cache entry for the specified user account.
+
+Arguments        : account - account number of the user whose cache entry is
+                   desired
+
+Returns          : pointer to struct CNUserCache.
+                   NULL if user is non-existant/not cached.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "UCacheRead" "UCacheRead"
+@TOC "MAIN"
+
+Function         : UCacheRead
+
+Prototype        : short LIBUCacheRead(short account, struct @{"UserData" LINK "cnetinclude:users.h/main" 67} *user, short numaccounts)
+
+Purpose          : Read a sequential block of user accounts from the CNet
+                   user cache.
+
+Arguments        : account     - the starting account number
+                   user        - the destination block (array of struct UserData)
+                   numaccounts - the number of sequential accounts to read.
+
+Returns          : the number of accounts read.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "UCacheWrite" "UCacheWrite"
+@TOC "MAIN"
+
+Function         : UCacheWrite
+
+Prototype        : short LIBUCacheWrite(short account, struct @{"UserData" LINK "cnetinclude:users.h/main" 67} *user, short numaccounts)
+
+Purpose          : Write a sequential block of user accounts to the CNet
+                   user cache.
+
+Arguments        : account     - the starting account number
+                   user        - the source block (array of struct UserData)
+                   numaccounts - the number of sequential accounts to write.
+
+Returns          : the number of accounts written.
+                   
+Known bugs       : none
+
+See also         : 
+@ENDNODE
+
+@NODE "UltimateFindParts" "UltimateFindParts"
+@TOC "MAIN"
+
+Function         : UltimateFindParts
+
+Prototype        : void UltimateFindParts( char *buffer, long min, long max, long *nparts, long *parts );
+
+Purpose          : Find the number of discrete parts in the given range buffer.
+
+Arguments        : buffer - the buffer containing the range to be examined
+                   min    - minimum value to apply to the range
+                   max    - the max value to apply to the range
+                   nparts - a pointer to a long integer which will receive the number
+                            of discrete parts existant in the range.
+                   parts  - an array of dual longs representing the min and max
+                            values for each part. note that parts should be at
+                            least 80 bytes in size (10 * 2 * sizeof(LONG))
+
+Limitations      : the number of parts in a range is limited to 10.
+
+Returns          : none
+
+See Also         : 
+@ENDNODE
+
+@NODE "UnLockAccount" "UnLockAccount"
+@TOC "MAIN"
+
+Function         : UnLockAccount
+
+Prototype        : void UnLockAccount( short acc, UBYTE save );
+
+Purpose          : to unlock an accountthat has been locked via @{"LockAccount()" LINK "LockAccount()"}
+
+Arguments        : acc  - the account to unlock
+                   save - TRUE if you wish to bind changes made to the UserData
+                          which was returned via LockAccount.
+                          FALSE to ignore changes.
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : LockAccount
+@ENDNODE
+
+@NODE "WriteLog" "WriteLog"
+@TOC "MAIN"
+
+Function         : WriteLog
+
+Prototype        : void WriteLog(struct @{"PortData" LINK "cnetinclude:ports.h/main" 135} *z, short n, char *text1, char *text2);
+
+Purpose          : Add an entry to a standard CNet log
+
+Arguments        : z     - PortData pointer of the user to which the log entry applies
+                   n     - the log number to which the entry applies
+                   text1 - text to be added as log column 1
+                   text2 - text to be added as log column 2
+
+Returns          : none
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "XAddCharge" "XAddCharge"
+@TOC "MAIN"
+
+Function         : 
+
+Prototype        : UBYTE XAddCharge(struct @{"ChargeSet" LINK "cnetinclude:charges.h/main" 17} *set, short id, short n, short a, char *info);
+
+Purpose          : Add a charge
+
+Arguments        : set  - the charge set to apply
+                   id   - account number of user to whom the charge is levied
+                   n    - charge number to apply (eg. 0 =  min balance charge)
+                   a    - charge multiplier - the charge is multiplied by this amount
+                   info - currently unused
+
+Returns          : TRUE is charge was applied, FALSE otherwise
+
+Known bugs       : none
+@ENDNODE
+
+@NODE "ZAddItem" "ZAddItem"
+@TOC "MAIN"
+
+Function         : ZAddItem
+
+Prototype        : UBYTE ZAddItem( struct @{"ItemType3" LINK "cnetinclude:subs.h/main" 191} *Item0, struct @{"ItemHeader" LINK "cnetinclude:subs.h/main" 179} *ihead0, struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s );
+
+Purpose          : Post a new Item (post or file) to the CNet message/file base
+
+Arguments        : Item0  - a pointer to the ItemType3 structure for this item
+                   ihead0 - a pointer to the ItemHeader structure for this item
+                   s      - the subboard from which the item is to be loaded
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : @{"ZGetItem" LINK "ZGetItem" }, @{"ZPutItem" LINK "ZPutItem"}, @{"ZAddMessage" LINK "ZAddMessage"}, @{"DelayAddItems" LINK "DelayAddItems"}, @{"FlushAddItems" LINK "FlushAddItems"}
+@ENDNODE
+
+@NODE "ZAddMessage" "ZAddMessage"
+@TOC "MAIN"
+
+Function         : ZAddMessage
+
+Prototype        : void ZAddMessage(struct @{"MessageType3" LINK "cnetinclude:subs.h/main" 111} *Message0, struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s);
+
+Purpose          : Post a new message (response) to the CNet message/file base
+
+Arguments        : Message0 - a pointer to the MessageType3 structure for this message
+                   s        - the subboard in which the message is to be saved
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : @{"ZGetItem" LINK "ZGetItem" }, @{"ZPutItem" LINK "ZPutItem"}, @{"ZAddItem" LINK "ZAddItem"}, @{"DelayAddItems" LINK "DelayAddItems"}, @{"FlushAddItems" LINK "FlushAddItems"}
+@ENDNODE
+
+@NODE "ZGetItem" "ZGetItem"
+@TOC "MAIN"
+
+Function         : ZGetItem
+
+Prototype        : void ZGetItem( struct @{"ItemType3" LINK "cnetinclude:subs.h/main" 191} *Item0, struct @{"ItemHeader" LINK "cnetinclude:subs.h/main" 179} *ihead0, struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s, short c );
+
+Purpose          : Load an Item (post or file) from the CNet message/file base
+
+Arguments        : Item0  - a pointer to the ItemType3 structure for this item
+                   ihead0 - a pointer to the ItemHeader structure for this item
+                   s      - the subboard from which the item is to be loaded
+                   c      - the physical number of the item being loaded.
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : @{"ZAddItem" LINK "ZAddItem"}, @{"ZPutItem" LINK "ZPutItem"}, @{"ZAddMessage" LINK "ZAddMessage"}, @{"DelayAddItems" LINK "DelayAddItems"}, @{"FlushAddItems" LINK "FlushAddItems"}
+@ENDNODE
+
+@NODE "ZPutItem" "ZPutItem"
+@TOC "MAIN"
+
+Function         : ZPutItem
+
+Prototype        : void ZPutItem( struct @{"ItemType3" LINK "cnetinclude:subs.h/main" 191} *Item0, struct @{"ItemHeader" LINK "cnetinclude:subs.h/main" 179} *ihead0, struct @{"SubboardType4" LINK "cnetinclude:subs.h/main" 439} *s, short c );
+
+Purpose          : Save an Item (post or file) to the CNet message/file base
+
+Arguments        : Item0  - a pointer to the ItemType3 structure for this item
+                   ihead0 - a pointer to the ItemHeader structure for this item
+                   s      - the subboard to which the item is to be saved
+                   c      - the physical number of the item being saved.
+
+Returns          : none
+
+Known bugs       : none
+
+See also         : @{"ZAddItem" LINK "ZAddItem"}, @{"ZGetItem" LINK "ZGetItem" }, @{"ZAddMessage" LINK "ZAddMessage"}, @{"DelayAddItems" LINK "DelayAddItems"}, @{"FlushAddItems" LINK "FlushAddItems"}
+@ENDNODE
+

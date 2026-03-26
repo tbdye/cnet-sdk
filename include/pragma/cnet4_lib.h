@@ -1,0 +1,15 @@
+#pragma libcall CNet4Base CNetPrintTime 1e A98004
+#pragma libcall CNet4Base CNetTime 24 0
+#pragma libcall CNet4Base CNetExplodeTime 2a 8002
+#pragma libcall CNet4Base CNetImplodeTime 30 801
+#pragma libcall CNet4Base CNetDowDate 36 801
+#pragma libcall CNet4Base CNetPrintDate 3c CBA904
+#pragma libcall CNet4Base CNetFindRange 42 910804
+#pragma libcall CNet4Base CNetNextRange 48 801
+#pragma libcall CNet4Base CNetLongToRange 4e 8002
+#pragma libcall CNet4Base CNetRangeToLong 54 801
+#pragma libcall CNet4Base CNetTimeNowDiff 5a 001
+#pragma libcall CNet4Base CNetEndOfRange 60 801
+#pragma libcall CNet4Base CNetPrevRange 66 801
+#pragma libcall CNet4Base CNetStartOfRange 6c 801
+#pragma libcall CNet4Base CNetUpTime 72 1902

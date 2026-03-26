@@ -1,0 +1,183 @@
+                Specifications for mail filing to mail-task
+                ===========================================
+
+                  copyright © 1988-1998 ZenMetal Software
+                 Additional copyrights 1988-1998 MetalSoft
+
+** This document is freely distributable to any developer wishing to write
+** mail-processing utilities for CNet Amiga.  The concept of mail-task,
+** it's filing procedures and this document are proprietary to CNet Amiga and
+** are covered under the ZenMetal CNet Amiga copyright.  The use of this
+** concept and code is also granted to Metal Software.
+
+
+                 WELCOME TO THE NEXT LEVEL OF CNET AMIGA!
+
+
+As of the ZenMetal CNet v4.12b release, mail-task is now a dedicated
+inbound/network-outbound mail-server for CNet. It requires TWO files for each
+piece of mail.  One is a "header/message" file and the other a list of
+intended recipients.  The format of these two files follow:
+
+Examples used throughout this document:  12345678.cmh
+                                         abcdefgh.mtl
+
+The filing system is designed so that you may send the same piece of mail to
+local users AND network users all at once simply by creating the message and
+it's header and then writing one or more MailToList structures for each
+intended recipient.
+
+
+1.1. The MailToList recipient file
+----------------------------------
+naming convention:   xxxxxxxx.mtl
+
+The contents of #?.mto files are arranged so that one piece of email can be
+sent to many users, local and outbound network addresses are allowed.  The
+first line of the .mto file is the full path/name of the .cmh file that
+contains the mail to be sent to the users listed in the .mtl file.
+(ie. "mail:cnetoutbox/12345678.cmh\n" )
+
+The .cmh file path/name is followed by one or more instances of the MailToList
+structure found in mail.h.  For each instance of MailToList structure, a
+corresponding copy of the mail contained in the .cmh file will be sent to
+the user/network address specified.
+
+The "Name" variable
+-------------------
+Each MailToList structure may contain a valid handle or realname for local
+users or a full network address.  These attributes are placed in the Name
+variable of the MailToList structure.
+
+The "UUCP" variable
+-------------------
+This is an optional field.  mail-task will find the most current UUCP id for
+the user specified in the "Name" variable if no UUCP is given).  For network
+addresses, internet and fido alike, DO NOT specify a UUCP name but DO fill
+out the MailType and Name variables of the MailToList structure with the FULL
+NETWORK ADDRESS of the intended recipient.
+
+Also, pay heed to the "MailType" variable.  There are currently 6 types.
+
+
+1.2 MailToList "MailTypes"
+--------------------------
+The MailType in the MailToList structure is designed to tell mail-task
+what type of mail is being sent for that specific MailTo as well as
+how to address the recipient, whether by RealName or Handle (for local users)
+For network mails, Mail-task will always use the specific "Name" but be
+sure to set the appropriate MailType to specify whether mail-task should
+send the mail to am internet or FTS (fidonet) address (types 2 and 3,
+respectively).  You may even specify NEWUSER or FEEDBACK items (which
+generally should be refrained from using, but the capability exists
+for a more well-rounded complete implementation.
+
+If you use the "Local Alias" MailType, be sure to fill out the UUCP id of
+the recepient.  mail-task currently, does not "track" individial aliases for
+each user, but may do so in the future.
+
+The "next" field may be ignored.  This is set dynamically by CNet when it
+must allocate a "list" of MailTypes for carbon-copy and Multi-Mail
+scenarios.
+
+
+
+Notes and concerns:
+-------------------
+   If you are going to write a .mtl file "on the fly" then please use a
+temporary extension until the file is completely written and THEN rename it
+with an .mtl extension (CNet uses an .mtt extension as a temporary extension
+but you may use whatever you like).  mail-task will not "see" the mailtolist
+file until it has an .mtl extension.  So be sure to write ALL files before
+renaming your temporary mailtofile with an .mtl extension so that mail-task
+does not try and read your .mtl file until your mail file(s) are complete.
+
+
+Summary
+-------
+1. Sending Netmail OUT through mail-task:
+
+   - fill out a MailHeader4 with the appropriate fields filled in.
+   - fill out a MailToList structure as follows:
+
+      Set the Name field as the user's FULL network address
+      Clear the UUCP field (ie. mailtolist.UUCP[0]=0;)
+      Set the MailType according to the following
+
+        MailType =  3 for a fidonet outbound mail
+                 =  2 for an internet/compuserve/aol/etc mail
+
+   - Save your MailHeader4 structure as mail:cnetoutbox/xxxxxxxx.cmh 
+     where the xxxxxxxx is unique from all other current .cmh files in
+     mail:cnetoutbox.
+   - Save the full path and name of the .cmh file in a file called
+     mail:cnetoutbox/xxxxxxxx.mtl and Be sure to terminate the filename
+     written to the .mtl file with a SINGLE \n (DECIMAL 10, HEX 0x0A)
+     Following the cmhfilename, write your MailToList structure to the .mtl
+     file as well.
+
+     Note: To write the structures to disk, it's best to use either the DOS
+           Write() function (if you opened the file using the AmigaDOS Open()
+           function) or use fwrite() if you opened the file using the ANSI
+           fopen() function.
+
+2. Sending mail to LOCAL users through mail-task:
+
+   - fill out a MailHeader4 with the appropriate fields filled in.
+
+      It is MOST IMPORTANT that you fill in the ByID and ByAccount
+      variables of the MailHeader4 structure.  To ToID and ToAccount
+      should be set by mail-task but you may fill these in also, to
+      be sure of the destination and to allow mail-bouncing to work
+      properly.
+
+   - fill out a MailToList structure as follows:
+
+      Set the Name field as the user's LOCAL handle or Real Name
+
+      Set the UUCP field to the user's UUCP name (or you can leave
+      this the UUCP field blank and mail-task will find the most current
+      UUCP name for the user).  Note that if you leave the UUCP field blank
+      and if the user changes his/her handle, mail-task may not be able to
+      find his/her account and the mail will never be received.  It is best to
+      fill out the UUCP name.
+
+      Set the MailType according to the following
+
+        MailType =  0 for mail to be sent using the sending user's real name.
+                    1 for mail to be sent using the sending user's Handle.
+                    4 for mail to be sent using an alias (ie. the sending
+                      user used someone else's handle/name.
+                    5 for mail to be sent using a handle derived from the
+                      FindAccount() "handle/name list" that CNet pops
+                      up when a user cannot be found.
+                    6 for mail to be sent to feedback.
+                    7 for mail to be sent to the sysop NEWUSER folder (ie new user applications
+                    8 for mail to be sent to the sysop MSGS-TO-SYSOP folder
+
+         Notes regarding FEEDBACK, NEWUSER and MSGS-TO-SYSOP mail:
+
+           - The UUCP field of the MailToList structure must be set to SYSOP.
+           - The Name field must be set to either FEEDBACK, NEWUSER or
+             SYSOP (for msgs-to-sysop).
+
+   - Save your MailHeader4 structure as mail:cnetoutbox/xxxxxxxx.cmh 
+     where the xxxxxxxx is unique from all other current .cmh files in
+     mail:cnetoutbox.
+   - Save the full path and name of the .cmh file in a file called
+     mail:cnetoutbox/xxxxxxxx.mtl and Be sure to terminate the filename
+     written to the .mtl file with a SINGLE '\n'
+     Following the cmhfilename, write your MailToList structure(s) to the .mtl
+     file as well.
+
+     Note: To write the structures to disk, it's best to use either the DOS
+           Write() function (if you opened the file using the AmigaDOS Open()
+           function) or use fwrite() if you opened the file using the ANSI
+           fopen() function.
+
+
+
+****** PLEASE DO NOT file items directly to user folders.  Use mail-task.
+       If the format of the folders changes in the future, you may corrupt
+       items in user folders by filing items directly to them, even though
+       they do use the same MailHeader4 format, currrently!

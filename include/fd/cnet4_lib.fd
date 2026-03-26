@@ -1,0 +1,19 @@
+##base _CNet4Base
+##bias 30
+##public
+CNetPrintTime(t,out,strings,format)(D0/A0/A1/A2)
+CNetTime()()
+CNetExplodeTime(t,date)(D0/A0)
+CNetImplodeTime(date)(A0)
+CNetDowDate(date)(A0)
+CNetPrintDate(date,out,strings,format)(A1/A2/A3/A4)
+CNetFindRange(buffer,min,max,rc)(A0/D0/D1/A1)
+CNetNextRange(rc)(A0)
+CNetLongToRange(def,where)(D0/A0)
+CNetRangeToLong(s)(A0)
+CNetTimeNowDiff(prevtime)(D0)
+CNetEndOfRange(rc)(A0)
+CNetPrevRange(rc)(A0)
+CNetStartOfRange(rc)(A0)
+CNetUpTime(out,timediff)(A1/D1)
+##end

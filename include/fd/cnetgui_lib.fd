@@ -1,0 +1,6 @@
+##base _CNetGuiBase
+##bias 30
+##public
+CNGTextWidth(str,Attr)(A0/A1)
+InitWindowStruct()()
+##end

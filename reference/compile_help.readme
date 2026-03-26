@@ -1,0 +1,5 @@
+To compile any of these programs, use the AmigaDOS script "make_gst.exe"
+to create a global symbol table for CNet and then use the following
+SAS/C command sequence:
+
+	SC gst=cnet.gst gstimm link <source_file.c>

@@ -1,0 +1,8 @@
+#ifndef CNET_CONVERT_H
+#define CNET_CONVERT_H
+
+#define BYTES_IN_K 1024L
+#define BYTES_IN_M (BYTES_IN_K*BYTES_IN_K)
+#define BYTES_IN_G (BYTES_IN_M*BYTES_IN_K)
+
+#endif /* CNET_CONVERT_H */

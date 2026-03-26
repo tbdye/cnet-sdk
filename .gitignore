@@ -1,0 +1,94 @@
+# Object files
+*.o
+
+# Static libraries (built by make)
+lib/libcnet_door.a
+
+# --- Compiled binaries (AmigaOS executables, no extension) ---
+
+# CNetC door examples
+examples/empty
+examples/CNetCTest
+examples/NewEmptyCTest
+examples/FindHandle
+examples/PortStatus
+examples/PortStatus2
+examples/PortStatus3
+examples/SubListVars
+examples/WFI_Test
+examples/RangeTest
+examples/RangeTest2
+examples/dirsize
+examples/ansidetect
+examples/MenuBits
+examples/identdtest
+examples/TestOpenDisplay
+examples/showunval
+
+# Standalone utilities
+examples/GetMainPort
+examples/mainporttest
+examples/ShowTelnetHosts
+examples/ShowIdleTime
+examples/setIdleTime
+examples/setsplitchat
+examples/SetZPos
+examples/OneKeyInject
+examples/RegistrationInfo
+examples/implist
+examples/listsubsem
+examples/identtestdos
+
+# Standalone utilities (cnet.library)
+examples/ZGettest
+examples/ReadDirTest
+examples/ReadDirTest2
+examples/CNetFileFind
+examples/verifymailsem
+
+# Standalone utilities (cnet.library + libcnet_door.a)
+examples/ListEvents
+
+# Standalone utilities (cnet4.library)
+examples/dos_uptime
+examples/DosDoor2
+
+# Standalone utilities (bsdsocket.library)
+examples/listdcc
+
+# Standalone utilities (DOS only)
+examples/DosDoor
+
+# Standalone utilities (no startup code)
+examples/listmailsem
+
+# Raw CMessage doors
+examples/WaitForC
+examples/identdlookup
+
+# Templates
+templates/pfile_cnetc
+templates/pfile_raw
+templates/standalone
+
+# Tools
+tools/guoffset
+tools/libinfo
+tools/structsizes
+
+# Tests
+tests/test_hello
+tests/test_userdata
+tests/test_library
+tests/test_structsizes
+tests/test_headers
+
+# --- Editor and OS metadata ---
+*~
+*.swp
+*.swo
+.*.swp
+\#*\#
+.DS_Store
+Thumbs.db
+Desktop.ini

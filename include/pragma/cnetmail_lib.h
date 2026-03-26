@@ -1,0 +1,14 @@
+#pragma libcall CNetMailBase MIMEParseBoundary 1e 9802
+#pragma libcall CNetMailBase MIMEIsBoundary 24 9802
+#pragma libcall CNetMailBase MIMEParseContentType 2a 9802
+#pragma libcall CNetMailBase MIMEFindType 30 9802
+#pragma libcall CNetMailBase MIMEParseName 36 A9803
+#pragma libcall CNetMailBase MIMEFromExt 3c 801
+#pragma libcall CNetMailBase DisposeMailTo 42 801
+#pragma libcall CNetMailBase NameToList 48 0A9804
+#pragma libcall CNetMailBase IsUUCP 4e 9802
+#pragma libcall CNetMailBase IsFido 54 BA9804
+#pragma libcall CNetMailBase IsLocal 5a 9802
+#pragma libcall CNetMailBase SendMail 60 0BA9805
+#pragma libcall CNetMailBase GetMailSems 66 0
+#pragma libcall CNetMailBase GetMPSems 6c 0

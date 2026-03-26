@@ -1,0 +1,18 @@
+##base _CNetMailBase
+##bias 30
+##public
+MIMEParseBoundary(contentline,boundary)(A0/A1)
+MIMEIsBoundary(line,boundary)(A0/A1)
+MIMEParseContentType(input,contentres)(A0/A1)
+MIMEFindType(typestring,encodingstring)(A0/A1)
+MIMEParseName(line,name,path)(A0/A1/A2)
+MIMEFromExt(ext)(A0)
+DisposeMailTo(mailtolist)(A0)
+NameToList(name,uucp,mailtolist,mailtype)(A0/A1/A2/D0)
+IsUUCP(net,mailtolist)(A0/A1)
+IsFido(net,faddr,nd,mailtolist)(A0/A1/A2/A3)
+IsLocal(name,mailtolist)(A0/A1)
+SendMail(from,to,subject,text,smflags)(A0/A1/A2/A3/D0)
+GetMailSems()()
+GetMPSems()()
+##end
