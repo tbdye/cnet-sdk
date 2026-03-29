@@ -144,7 +144,7 @@ Tested against CNet v5.36c running under [Amiberry](https://github.com/BlitterSt
 The library ABI is unchanged between v5.01 (SDK release) and v5.36c, so doors
 compiled with this SDK work on any CNet v5.x installation.
 
-All 52 programs (42 examples, 3 templates, 3 tools, 4 tests) compile with zero
+All 53 programs (42 examples, 3 templates, 3 tools, 5 tests) compile with zero
 errors. Standalone utilities have been verified on a live system.
 See [docs/version_delta.md](docs/version_delta.md) for ABI details.
 

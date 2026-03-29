@@ -4,7 +4,7 @@ This guide walks you through building and deploying your first CNet 5 PFile (doo
 
 ## Prerequisites
 
-- **m68k-amigaos-gcc cross-compiler** installed at `/opt/amiga/` (or adjust paths in the Makefile). This is the Bebbo GCC toolchain for AmigaOS 68k.
+- **m68k-amigaos-gcc cross-compiler** installed at `/opt/amiga/` (override with `make PREFIX=/your/path`). This is the Bebbo GCC toolchain for AmigaOS 68k.
 - **A running CNet 5 BBS** (v5.x) on a real or emulated Amiga, accessible for file transfer (e.g., via network share, FTP, or amigactl).
 - Basic familiarity with C programming and the AmigaOS environment.
 

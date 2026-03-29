@@ -167,8 +167,8 @@ folders.
 
 When the workspace opens, VS Code will prompt you to install recommended
 extensions. Click **Install All** to get the C/C++ extension (required for
-IntelliSense) and the Hex Editor (useful for inspecting compiled Amiga
-binaries).
+IntelliSense), the Hex Editor (useful for inspecting compiled Amiga
+binaries), and EditorConfig (enforces consistent formatting).
 
 ### Step 7: Verify IntelliSense
 
