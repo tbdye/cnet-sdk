@@ -31,20 +31,20 @@ int main(int argc, char *argv[])
 			account = atoi(argv[1]);
 			Printf("	Examining mail semaphore for account %ld..\n", (long)account);
 			Printf("		Address     : 0x%lx\n", (unsigned long)&myp->MPE->MailSem[account-1]);
-			Printf("		Owner task  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown");
+			Printf("		Owner task  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (long)((taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown"));
 
 			if(AttemptSemaphore(&myp->MPE->MailSem[account-1]))
 				{
 				Printf("	(Semaphore attempable)\n");
-				Printf("		Owner task (temp)  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown");
+				Printf("		Owner task (temp)  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (long)((taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown"));
 				ReleaseSemaphore(&myp->MPE->MailSem[account-1]);
 
 				Printf("	Obtaining Semaphore..\n");
 				ObtainSemaphore(&myp->MPE->MailSem[account-1]);
 				Printf("	(Semaphore obtainable)\n");
-				Printf("		Owner task (temp)  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown");
+				Printf("		Owner task (temp)  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (long)((taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown"));
 				ReleaseSemaphore(&myp->MPE->MailSem[account-1]);
-				Printf("	Owner task (final)  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown");
+				Printf("	Owner task (final)  : 0x%lx (%s)\n", (unsigned long)myp->MPE->MailSem[account-1].ss_Owner, (long)((taskaddr == myp->MPE->MailSem[account-1].ss_Owner) ? argv[0]:"unknown"));
 				}
 			}
 		}

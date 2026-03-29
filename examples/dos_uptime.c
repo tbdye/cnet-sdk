@@ -39,7 +39,6 @@ int main(int argc, char **argv)
    short i;
    struct PortData *zp;
    char date[24];
-   LONG uptime;
    char utstring[128];
    struct RangeContext rc;
    char *argbuff;
@@ -80,7 +79,7 @@ int main(int argc, char **argv)
 
 			// control uptime
 
-			MakeDateZone( &myp->SAMDate[1], date, &myp->FirstTT->bm[1069], NULL, NULL );
+			MakeDateZone( &myp->SAMDate[1], date, (char **)&myp->FirstTT->bm[1069], 0, 0 );
 			CNetUpTime(utstring, CNetTimeNowDiff(CNetImplodeTime(&myp->SAMDate[1])));
 			MCIprintf(myp->FirstTT->bm[2427], date, (*utstring) ? utstring : (char *)myp->FirstTT->bm[2421]);
 
@@ -90,7 +89,7 @@ int main(int argc, char **argv)
 				{
 				if((zp=myp->PortZ[i]) != myp->z0 )
 					{
-					MakeDateZone( &zp->BootDate,date, &myp->FirstTT->bm[1069], NULL, NULL );
+					MakeDateZone( &zp->BootDate,date, (char **)&myp->FirstTT->bm[1069], 0, 0 );
 					CNetUpTime(utstring, CNetTimeNowDiff(CNetImplodeTime(&zp->BootDate)));
 					MCIprintf(myp->FirstTT->bm[2428], i, date, *utstring ? utstring : (char *)myp->FirstTT->bm[2421]);
 					}
@@ -169,7 +168,7 @@ void MCIprintf(char *fmt, ...)
                {
                char *s;
 
-               if(s=strchr(inp, '}'))
+               if((s=strchr(inp, '}')))
                   inp=s;
                CQ=FALSE;
                }

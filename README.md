@@ -6,7 +6,7 @@ targeting the m68k-amigaos-gcc cross-compiler.
 
 The original CNet 5 SDK was written for SAS/C on native AmigaOS. This
 project ports the headers, library stubs, linker library, and examples to
-compile cleanly under the [Bebbo GCC](https://github.com/bebbo/amiga-gcc)
+compile cleanly under the [Bebbo GCC](https://codeberg.org/bebbo/amiga-gcc)
 cross-compiler toolchain, making it possible to develop CNet doors from a
 modern Linux or macOS workstation.
 
@@ -35,7 +35,7 @@ that the templates and examples already handle.
 ## Quick Start
 
 ```sh
-git clone <repo-url> cnet-sdk
+git clone https://github.com/tbdye/cnet-sdk.git cnet-sdk
 cd cnet-sdk
 make lib        # build libcnet_door.a
 make examples   # build all example programs
@@ -47,10 +47,26 @@ walkthrough of writing, compiling, deploying, and testing your first PFile.
 ## Build Requirements
 
 - **m68k-amigaos-gcc** (Bebbo GCC toolchain) installed at `/opt/amiga/`
-  (or edit `CC` in the Makefile)
+  (override with `make PREFIX=/your/path`)
 - **GNU Make**
 - A **CNet 5 BBS** (v5.x) running on a real or emulated Amiga for testing
 - **[amigactl](https://github.com/tbdye/amigactl)** (optional) -- Remote Amiga management tool, useful for deploying compiled binaries
+
+## Editor Support
+
+The SDK includes VS Code workspace configuration for a batteries-included
+development experience:
+
+- **IntelliSense** -- code completion, hover documentation, and error
+  checking for CNet and AmigaOS APIs
+- **Build tasks** -- Ctrl+Shift+B compiles with errors linked to source
+  locations in the Problems panel
+- **Code snippets** -- `cnet-door` and `cnet-standalone` scaffolds, plus
+  common API patterns
+
+This works on native Linux and Windows (via WSL) with zero configuration
+changes. See [docs/vscode-setup.md](docs/vscode-setup.md) for setup
+instructions, including a complete Windows/WSL walkthrough.
 
 ## SDK Contents
 
@@ -110,6 +126,7 @@ Three starter templates for new projects:
 | [examples-guide.md](docs/examples-guide.md) | Annotated example catalog |
 | [migration-v3-to-v5.md](docs/migration-v3-to-v5.md) | Porting v3 doors to v5 |
 | [arexx.md](docs/arexx.md) | ARexx interface reference |
+| [vscode-setup.md](docs/vscode-setup.md) | VS Code and Windows/WSL setup guide |
 | [known-issues.md](docs/known-issues.md) | Known issues and errata |
 | [version_delta.md](docs/version_delta.md) | v5.01 vs v5.36c ABI comparison |
 

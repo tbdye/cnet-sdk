@@ -24,7 +24,7 @@ char *GetTaskName(APTR taskaddr)
 
 	Forbid();
 	tasknode = SysBase->TaskReady.lh_Head;
-	while( nextnode = tasknode->ln_Succ )
+	while( (nextnode = tasknode->ln_Succ) )
 		{
 		// print libname etc, here.
 		taskp=(struct Task *)tasknode;
@@ -38,7 +38,7 @@ char *GetTaskName(APTR taskaddr)
 		}
 
 	tasknode = SysBase->TaskWait.lh_Head;
-	while( nextnode = tasknode->ln_Succ )
+	while( (nextnode = tasknode->ln_Succ) )
 		{
 		// print libname etc, here.
 		taskp=(struct Task *)tasknode;
@@ -61,9 +61,9 @@ int main( int argc, char *argv[])
 	short xxx = atoi(argv[1])-1;
 	char ownertaskname[40];
 
-	if(myp=(struct MainPort *)FindPort(CNETPORT))
+	if((myp=(struct MainPort *)FindPort(CNETPORT)))
 		{
-		Printf("\nMailSem[%ld] (%lx)  belongs to %s\n", (long)xxx, (unsigned long)&myp->MPE->MailSem[xxx], myp->Key[xxx].Handle);
+		Printf("\nMailSem[%ld] (%lx)  belongs to %s\n", (long)xxx, (unsigned long)&myp->MPE->MailSem[xxx], (long)myp->Key[xxx].Handle);
 		Printf("ss_Link        : %lx\n",	(unsigned long)&myp->MPE->MailSem[xxx].ss_Link);
 		Printf("ss_NestCount   : %ld\n", (long)myp->MPE->MailSem[xxx].ss_NestCount);
 		Printf("ss_WaitQueue   : 0x%lx\n",	(unsigned long)&myp->MPE->MailSem[xxx].ss_WaitQueue);
@@ -81,7 +81,7 @@ int main( int argc, char *argv[])
 			{
 			ownertaskname[0] = 0;
 			strcpy(ownertaskname, GetTaskName(myp->MPE->MailSem[xxx].ss_Owner));
-			Printf("already locked by task \"%s\" (%lx)\n", ownertaskname[0] ? ownertaskname : "unknown", (unsigned long)myp->MPE->MailSem[xxx].ss_Owner);
+			Printf("already locked by task \"%s\" (%lx)\n", (long)(ownertaskname[0] ? ownertaskname : "unknown"), (unsigned long)myp->MPE->MailSem[xxx].ss_Owner);
 			}
 		}
 	else

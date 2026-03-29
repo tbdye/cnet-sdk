@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	struct TNHostEntry he;
 	int i=0;
 
-	if(fh=Open(tnhostfile, MODE_OLDFILE))
+	if((fh=Open(tnhostfile, MODE_OLDFILE)))
 		{
 		char hoststring[80];
 

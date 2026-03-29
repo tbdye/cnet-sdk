@@ -816,7 +816,7 @@ void PrepEditor( BPTR fp )
 	char	buff[100];
 
 	if( fp ) {
-		if( kp = OpenEd( MODE_NEWFILE ) ) {
+		if( (kp = OpenEd( MODE_NEWFILE )) ) {
 			while( FGets( fp, buff, 82 ) && buff[0]!=26 )
 			       FPuts( kp, buff     ) ;
 
@@ -835,7 +835,7 @@ void SaveEditor( BPTR fp, UBYTE eof )
 	BPTR	kp;
 	char	buff[100];
 
-	if( kp = OpenEd( MODE_OLDFILE ) ) {
+	if( (kp = OpenEd( MODE_OLDFILE )) ) {
 		while( FGets( kp, buff, 82 ) && buff[0]!=26 )
 		       FPuts( fp, buff     ) ;
 
@@ -856,7 +856,7 @@ void DisplayIdentD( void )
 		// walk the list of identd data and print specifics
 		while(iddptr)
 			{
-			sprintf(z->ABuffer, "Socket number: %ld, CNet Owner Port: %ld\n", iddptr->socket, (long)iddptr->port);
+			sprintf(z->ABuffer, "Socket number: %ld, CNet Owner Port: %ld\n", (long)iddptr->socket, (long)iddptr->port);
 			PutA();
 			iddptr=iddptr->next;
 			}

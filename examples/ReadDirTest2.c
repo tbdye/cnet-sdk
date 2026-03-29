@@ -31,18 +31,18 @@ void DoDisplay(struct CNetFileEntry *list, UBYTE depth)
    UBYTE i;
 
    depth++;
-   while(fptr=NextDirEntry(HeaderEntry(list), fptr))
+   while((fptr=NextDirEntry(HeaderEntry(list), fptr)))
       {
       if(fptr->size)
-         sprintf(buff, "(%ld bytes)", fptr->size);
+         sprintf(buff, "(%ld bytes)", (long)fptr->size);
 
       for(i=0;i<depth;i++)
          Printf("\t");
 
-      Printf("%3ld. %s%s %s\n", EntryOrdinal(fptr, HeaderEntry(list)),
-                                fptr->ftype ? "[DIR]":"",
-                                fptr->filename,
-                                fptr->size ? buff:"");
+      Printf("%3ld. %s%s %s\n", (long)EntryOrdinal(fptr, HeaderEntry(list)),
+                                (long)(fptr->ftype ? "[DIR]":""),
+                                (long)fptr->filename,
+                                (long)(fptr->size ? buff:""));
       if(fptr->ftype)
          {
          DoDisplay(fptr->child, depth);
@@ -54,9 +54,9 @@ int main( int argc, char *argv[])
 {
    struct CNetFileEntry *pointer=NULL;
 
-   if(CNetBase=OpenLibrary(CNETLIBNAME, CNETLIBVERSION))
+   if((CNetBase=OpenLibrary(CNETLIBNAME, CNETLIBVERSION)))
       {
-      if(fib=AllocVec(sizeof(struct FileInfoBlock), MEMF_CLEAR))
+      if((fib=AllocVec(sizeof(struct FileInfoBlock), MEMF_CLEAR)))
          {
 
          // create the header entry and set it as the list TOP entry.
@@ -96,11 +96,11 @@ int main( int argc, char *argv[])
 
          // Display the sorted directory contents
 
-         if(pointer=HeaderEntry(filelist)) // the header entry contains info
+         if((pointer=HeaderEntry(filelist))) // the header entry contains info
                                            // about the directory of files
                                            // attached to the linked list
             {
-            Printf("Directory of: %s\n", pointer->filename);
+            Printf("Directory of: %s\n", (long)pointer->filename);
             DoDisplay(pointer, 0);
             }
 

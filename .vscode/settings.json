@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "*.h": "c"
+    },
+    "files.exclude": {
+        "**/*.o": true,
+        "lib/libcnet_door.a": true
+    },
+    "search.exclude": {
+        "**/*.o": true,
+        "lib/libcnet_door.a": true
+    },
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "[makefile]": {
+        "editor.insertSpaces": false
+    }
+}

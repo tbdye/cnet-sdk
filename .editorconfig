@@ -1,0 +1,21 @@
+# EditorConfig - https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# C/H files: do NOT set indent_style or indent_size.
+# The codebase has mixed indentation -- original CNet SDK examples and headers
+# use tabs, while newer code (templates, tests, tools, lib/) uses 4-space
+# indentation. Imposing a single style would create churn in original files.
+
+[Makefile]
+indent_style = tab
+
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false

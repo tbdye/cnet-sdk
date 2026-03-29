@@ -4,9 +4,10 @@
 # Combines door lifecycle, CNC_* wrappers, utility functions,
 # and CommonFuncs snippets into a single archive.
 
-CC      = /opt/amiga/bin/m68k-amigaos-gcc
-AR      = /opt/amiga/bin/m68k-amigaos-ar
-RANLIB  = /opt/amiga/bin/m68k-amigaos-ranlib
+PREFIX  ?= /opt/amiga
+CC      = $(PREFIX)/bin/m68k-amigaos-gcc
+AR      = $(PREFIX)/bin/m68k-amigaos-ar
+RANLIB  = $(PREFIX)/bin/m68k-amigaos-ranlib
 CFLAGS  = -noixemul -m68020 -O2 -Wall -Wno-pointer-sign -I../include -I../include/cnet
 ARFLAGS = rcs
 
