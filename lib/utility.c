@@ -1034,7 +1034,6 @@ void free_list(struct List *list)
  * surviving SDK headers.  Doors that need editor functionality
  * should use CNC_CallEditor() or CNC_EditMessage() instead.
  */
-#warning "TextToEditor() is a stub -- editor buffer layout unknown"
 void TextToEditor(char *text)
 {
     (void)text;

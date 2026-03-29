@@ -10,7 +10,8 @@
 # Some standalone utilities also link against cnet.library or cnet4.library
 # at runtime but do not need the door static library at compile time.
 
-CC      = /opt/amiga/bin/m68k-amigaos-gcc
+PREFIX  ?= /opt/amiga
+CC      = $(PREFIX)/bin/m68k-amigaos-gcc
 CFLAGS  = -noixemul -m68020 -O2 -Wall -Wno-pointer-sign -Iinclude -Iinclude/cnet
 LDFLAGS = -noixemul
 LIBS    = -Llib -lcnet_door
@@ -141,7 +142,7 @@ ALL_TARGETS = $(ALL_EXAMPLES) $(TEMPLATES) $(TOOLS) $(TESTS)
 all: lib examples templates tools
 
 lib:
-	$(MAKE) -C lib
+	$(MAKE) -C lib PREFIX=$(PREFIX)
 
 examples: lib $(ALL_EXAMPLES)
 
@@ -217,5 +218,5 @@ $(TESTS_STANDALONE): %: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
 
 clean:
-	$(MAKE) -C lib clean
+	$(MAKE) -C lib PREFIX=$(PREFIX) clean
 	rm -f $(ALL_TARGETS)

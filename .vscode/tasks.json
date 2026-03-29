@@ -1,0 +1,87 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build All",
+            "type": "shell",
+            "command": "make",
+            "args": ["all"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"]
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            }
+        },
+        {
+            "label": "Build Library",
+            "type": "shell",
+            "command": "make",
+            "args": ["lib"],
+            "group": "build",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"]
+            }
+        },
+        {
+            "label": "Build Examples",
+            "type": "shell",
+            "command": "make",
+            "args": ["examples"],
+            "group": "build",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"]
+            }
+        },
+        {
+            "label": "Build Templates",
+            "type": "shell",
+            "command": "make",
+            "args": ["templates"],
+            "group": "build",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"]
+            }
+        },
+        {
+            "label": "Build Tools",
+            "type": "shell",
+            "command": "make",
+            "args": ["tools"],
+            "group": "build",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"]
+            }
+        },
+        {
+            "label": "Build Tests",
+            "type": "shell",
+            "command": "make",
+            "args": ["tests"],
+            "group": "build",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}"]
+            }
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make",
+            "args": ["clean"],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

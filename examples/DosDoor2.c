@@ -40,7 +40,6 @@ void GetOut(void)
 
 int main(int argc, char **argv)
 {
-	LONG zzz=0;
 	char date[40];
 	struct UserData *u;
 
@@ -51,10 +50,10 @@ int main(int argc, char **argv)
    if( !(CNetBase = OpenLibrary("cnet.library", 4)) ) // library required for CalculateAge() and other date-related routines
    	GetOut();
 
-	// -------------------------- YOUR CODE BEGINS HERE ------------------------
+   // -------------------------- YOUR CODE BEGINS HERE ------------------------
 
-	if(u=LockAccount(1))
-		{
+   if((u=LockAccount(1)))
+      {
 		CNetPrintDate(&u->LastCall, date, NULL, NULL);
 		printf("     Last Call: %s\n\n", date);
 		CNetPrintDate(&u->Birthdate, date, NULL, NULL);

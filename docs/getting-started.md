@@ -4,16 +4,25 @@ This guide walks you through building and deploying your first CNet 5 PFile (doo
 
 ## Prerequisites
 
-- **m68k-amigaos-gcc cross-compiler** installed at `/opt/amiga/` (or adjust paths in the Makefile). This is the Bebbo GCC toolchain for AmigaOS 68k.
+- **m68k-amigaos-gcc cross-compiler** installed at `/opt/amiga/` (override with `make PREFIX=/your/path`). This is the Bebbo GCC toolchain for AmigaOS 68k.
 - **A running CNet 5 BBS** (v5.x) on a real or emulated Amiga, accessible for file transfer (e.g., via network share, FTP, or amigactl).
 - Basic familiarity with C programming and the AmigaOS environment.
+
+## Editor Setup (Optional)
+
+For a guided setup using VS Code with full IntelliSense, build integration,
+and code snippets, see [vscode-setup.md](vscode-setup.md). That guide also
+covers Windows development via WSL. VS Code users can scaffold a complete
+door or standalone utility instantly using the included code snippets
+(`cnet-door`, `cnet-standalone`) instead of writing the boilerplate by hand.
+The instructions below work with any editor.
 
 ## Installing the SDK
 
 Clone the repository and verify the cross-compiler is available:
 
 ```sh
-git clone <repo-url> cnet-sdk
+git clone https://github.com/tbdye/cnet-sdk.git cnet-sdk
 cd cnet-sdk
 /opt/amiga/bin/m68k-amigaos-gcc --version
 ```
@@ -77,7 +86,7 @@ int main(int argc, char **argv)
 ### Key concepts in this code
 
 - **`CNCL_DoorInit(argc, argv)`** -- Opens cnetc.library, establishes the door context, and populates the global pointers `z` (PortData) and `myp` (MainPort). CNet passes the communication port name as `argv[1]`.
-- **`CPutText()`** -- Sends text to the connected user. Use `\r\n` for line breaks.
+- **`CPutText()`** -- Sends text to the connected user. Use `\r\n` or `\n` for line breaks -- CNet handles CR/LF translation internally.
 - **`CEnterLine()`** -- Prompts the user for a line of text. The result goes into `z->InBuffer`.
 - **`CPutA()`** -- Sends the contents of `z->ABuffer` to the user. Format your output into `z->ABuffer` with `sprintf()`, then call `CPutA()` to display it.
 - **`atexit(DoorCleanup)`** -- Registers your cleanup *before* `CNCL_DoorInit` registers its own, so yours runs first (LIFO order). When `main()` returns or `exit()` is called, `DoorCleanup` runs first, then `CNCL_DoorCleanup` shuts down the CNet connection.

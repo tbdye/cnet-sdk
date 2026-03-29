@@ -1,0 +1,22 @@
+{
+    "version": 4,
+    "env": {
+        "amigaToolchain": "/opt/amiga"
+    },
+    "configurations": [
+        {
+            "name": "AmigaOS (m68k-amigaos-gcc)",
+            "compilerPath": "${env:amigaToolchain}/bin/m68k-amigaos-gcc",
+            "compilerArgs": [
+                "-noixemul",
+                "-m68020"
+            ],
+            "includePath": [
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/include/cnet"
+            ],
+            "defines": [],
+            "intelliSenseMode": "linux-gcc-x86"
+        }
+    ]
+}

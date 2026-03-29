@@ -42,8 +42,6 @@ int main(int argc, char **argv)
 			struct in_addr remote;
 			ULONG TempLong;
 			int xxx=0;
-			char status[10];
-
 			ObtainSemaphore(&myp->MPE->dccsem);
 
 			if( !((struct List *)&myp->MPE->DCCList) || IsListEmpty((struct List *)&myp->MPE->DCCList) )
@@ -59,7 +57,7 @@ int main(int argc, char **argv)
 					reqptr = (struct DCCStruct *)work;
 
 					if(reqptr->size)
-						sprintf(argbuffer, "%s/%ld bytes", reqptr->arg, reqptr->size);
+						sprintf(argbuffer, "%s/%ld bytes", reqptr->arg, (long)reqptr->size);
 					else
 						sprintf(argbuffer, "%s", reqptr->arg);
 
@@ -68,7 +66,7 @@ int main(int argc, char **argv)
 					remote.s_addr = htonl(TempLong);
 					strcpy(addrbuffer, Inet_NtoA(remote.s_addr));
 
-					printf("%2d %-15.15s %-15.15s %-4.4s %-20.20s %-7.7s %-14.14s %ld\n", xxx+1, reqptr->nickname, addrbuffer, reqptr->Type, argbuffer, StatTypes[reqptr->status], reqptr->ID, reqptr->UserID);
+					printf("%2d %-15.15s %-15.15s %-4.4s %-20.20s %-7.7s %-14.14s %ld\n", xxx+1, reqptr->nickname, addrbuffer, reqptr->Type, argbuffer, StatTypes[reqptr->status], reqptr->ID, (long)reqptr->UserID);
 					xxx++;
 					work=(struct Node *)work->ln_Succ;
 					}

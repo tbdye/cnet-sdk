@@ -17,7 +17,6 @@
 int main( int argc, char *argv[] )
 {
 	struct MainPort *myp;
-	LONG xxx=0;
 	int portnum = 0;
 
 	if(argc != 2)

@@ -18,12 +18,12 @@ int main(int argc, char **argv)
 	struct MainPort *myp;
 	struct IMPStruct *impwork, *impnext;
 
-	if(myp=(struct MainPort *)FindPort(CNETPORT))
+	if((myp=(struct MainPort *)FindPort(CNETPORT)))
 		{
 		ObtainSemaphore(&myp->MPE->sem[3]);
 		// walk IMP list and see if "impcheck" matches the "Name" field of IMPStruct
 		impwork = (struct IMPStruct *)myp->MPE->IMPList.lh_Head;
-		while( impnext = (struct IMPStruct *) ((struct Node *)impwork)->ln_Succ )
+		while( (impnext = (struct IMPStruct *) ((struct Node *)impwork)->ln_Succ) )
 			{
 			// compare (ADOS pattern match) impcheck with impwork->Name
 			printf("\n        Name: \"%s\"", impwork->Name);

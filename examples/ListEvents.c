@@ -31,21 +31,21 @@ char *InvokeLabels[] =
    NULL
    };
 
-UBYTE *StatusLabels[] =
+char *StatusLabels[] =
    {
    "Ready",
    "Suspended",
    "Once/Delete",
    NULL };
 
-UBYTE *PortLabels[] =
+char *PortLabels[] =
    {
    "Ignore",
    "Run",
    "Run/Close",
    NULL };
 
-UBYTE *TypeLabels[] =
+char *TypeLabels[] =
    {
    "RunCNetC",
    "RunARexx",
@@ -89,7 +89,6 @@ int main(int argc, char **argv)
    char EventFile[] = "cnet:configs/events.cfg";
    BPTR fh;
    struct JobType4 job0;
-   char buffer[40];
    char datestr[40];
    char timestr[40];
    struct Library *CNetBase;
@@ -102,14 +101,13 @@ int main(int argc, char **argv)
    //       to get a pointer to MainPort first.
    //       eg. myp=(struct MainPort *)FindPort(CNETPORT);
 
-   if(CNetBase = OpenLibrary("cnet.library", 4L))
+   if((CNetBase = OpenLibrary("cnet.library", 4L)))
       {
 //    ObtainSemaphore(&myp->eventsem); // This line requires a MainPort pointer..
 
-      if(fh=Open(EventFile, MODE_OLDFILE))
+      if((fh=Open(EventFile, MODE_OLDFILE)))
          {
          BYTE xxx=0;
-
          while(Read(fh, &job0, sizeof(struct JobType4)))
             {
             printf("\n    Name: %s\n", job0.Name);
@@ -127,7 +125,7 @@ int main(int argc, char **argv)
             timestr[5]=0;
             printf("LastDate: %s %s\n", datestr, timestr);
 
-            printf("   Valid: %ld seconds\n", job0.valid);
+            printf("   Valid: %ld seconds\n", (long)job0.valid);
             printf("    Days: ");
             for(xxx=0;xxx<7;xxx++)
                if(job0.Days & xxx)
