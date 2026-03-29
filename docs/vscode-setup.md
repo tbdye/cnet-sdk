@@ -410,6 +410,19 @@ The full scaffold snippets (`cnet-door` and `cnet-standalone`) insert an
 entire file skeleton with tabstops for the filename, description, and main
 body. These are best used in a new, empty `.c` file.
 
+### Starting a New Door
+
+1. Create a new file: **File > New File**, then save it as `mypfile.c`.
+2. Type `cnet-door` and press **Tab**. The full door scaffold expands.
+3. Tab through the placeholders: filename, description, then your cursor
+   lands in the `DoorMain()` body -- start writing your door logic here.
+4. Add the file to `CNETC_DOORS` in the Makefile, then press **Ctrl+Shift+B**
+   to build.
+
+For a standalone utility, use `cnet-standalone` instead. The smaller
+snippets (`cput`, `center`, `cputa`, etc.) work inside any function body
+for quick API calls.
+
 The snippets are defined in `.vscode/cnet.code-snippets`. You can add your
 own snippets to this file or create a separate `.code-snippets` file in the
 `.vscode/` directory.

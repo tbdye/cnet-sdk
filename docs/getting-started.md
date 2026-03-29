@@ -12,8 +12,10 @@ This guide walks you through building and deploying your first CNet 5 PFile (doo
 
 For a guided setup using VS Code with full IntelliSense, build integration,
 and code snippets, see [vscode-setup.md](vscode-setup.md). That guide also
-covers Windows development via WSL. The instructions below work with any
-editor.
+covers Windows development via WSL. VS Code users can scaffold a complete
+door or standalone utility instantly using the included code snippets
+(`cnet-door`, `cnet-standalone`) instead of writing the boilerplate by hand.
+The instructions below work with any editor.
 
 ## Installing the SDK
 
