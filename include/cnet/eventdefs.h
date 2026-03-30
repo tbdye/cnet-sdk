@@ -1,6 +1,8 @@
 #ifndef CNET_EVENTDEFS_H
 #define CNET_EVENTDEFS_H
 
+#include <cnet/align.h>
+
 // event types
 #define EVENT_RUNCNETC	0
 #define EVENT_RUNAREXX	1
@@ -45,6 +47,8 @@
  * binary format; the original struct definition was not shipped in
  * public headers.
  */
+CNET_PACK_BEGIN
+
 struct JobType4 {
    char   Name[40];         // event name
    char   args[80];         // command string
@@ -59,6 +63,8 @@ struct JobType4 {
    UBYTE  deleted;          // non-zero if deleted
    LONG   repeat;           // repeat interval in seconds
    UBYTE  runport;          // port action (0=Ignore, 1=Run, 2=Run/Close)
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 #endif /* CNET_EVENTDEFS_H */

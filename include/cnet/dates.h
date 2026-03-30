@@ -2,6 +2,10 @@
 #ifndef CNET_DATES
 #define CNET_DATES
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 struct IsDate {
 	UBYTE Year;
 	UBYTE Month;
@@ -9,8 +13,9 @@ struct IsDate {
 	UBYTE Hour;
 	UBYTE Minute;
 	UBYTE Second;
-} __attribute__((packed));
+};
 
+CNET_PACK_END
 
 #define SECONDS_IN_DAY    86400
 #define SECONDS_IN_HOUR    3600

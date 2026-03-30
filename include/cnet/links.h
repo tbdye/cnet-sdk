@@ -12,11 +12,15 @@
 #ifndef CNET_LINKS_H
 #define CNET_LINKS_H
 
+#include <cnet/align.h>
+
 /*
  * TermLink - terminal link state for inter-port communication
  * Used by value as tl in struct PortData (ports.h line 868).
  * Padded to 128 bytes as a safe upper bound.
  */
+CNET_PACK_BEGIN
+
 struct TermLink {
     short RemotePort;
     short LocalPort;
@@ -25,7 +29,9 @@ struct TermLink {
     char RemoteSystem[40];
     char RemoteHandle[32];
     UBYTE expansion[52];
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 /* Forward declaration for pointer-only type */
 struct LinkPort;

@@ -2,6 +2,10 @@
 #ifndef CNET_VDE
 #define CNET_VDE
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 struct VDEentry {
    char  text[48];
 
@@ -27,8 +31,9 @@ struct VDEentry {
          goright;
 
    UWORD ghost;
-} __attribute__((packed));
+};
 
+CNET_PACK_END
 
 #define VDE_TYPE_NULL         -1
 #define VDE_TYPE_UBYTE         0 // UBYTE 0/1

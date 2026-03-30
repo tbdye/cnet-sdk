@@ -42,6 +42,7 @@
  * redefine __asm.  The LP* macros require __asm as a GCC keyword.
  */
 #include <proto/cnetc.h>
+#include <cnet/align.h>
 
 /*
  * Forward declarations for CNet struct types used as opaque pointers.
@@ -58,6 +59,8 @@ struct CPort;
  *
  * These must match the definitions in include/cnet/doors.h exactly.
  */
+CNET_PACK_BEGIN
+
 struct CMessage
 {
     struct Message cn_Message;
@@ -68,7 +71,7 @@ struct CMessage
     ULONG          result;
     UBYTE          command;
     UBYTE          align[3];
-} __attribute__((packed));
+};
 
 struct CNetCContext
 {
@@ -77,7 +80,9 @@ struct CNetCContext
     struct CPort    *cport;
     struct MsgPort  *replyp;
     struct CMessage cmess;
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 /* libnix stack size -- doors need headroom beyond the default 4KB */
 unsigned long __stack = 65536;

@@ -9,12 +9,16 @@
 #define FMSIZE 256
 #endif
 
+#include <cnet/align.h>
+
 /*
  * DCCStruct - DCC request node stored in MainPortExtension->DCCList.
  * Protected by MPE->dccsem.  Field sizes inferred from original SDK
  * examples; the original struct definition was not shipped in public
  * headers.
  */
+CNET_PACK_BEGIN
+
 struct DCCStruct {
    struct Node node;            // Exec list linkage
    char   nickname[32];         // IRC nickname of sender
@@ -25,7 +29,7 @@ struct DCCStruct {
    UBYTE  status;               // DCC status index (see StatTypes[])
    char   ID[20];               // DCC identifier
    LONG   UserID;               // CNet user ID
-} __attribute__((packed));
+};
 
 // information about DCC file in progress
 struct DCCFile
@@ -36,6 +40,8 @@ struct DCCFile
 	ULONG start_time;			// local start time - reference for calculating CPS
 	ULONG ETA;					// time to completion
 	USHORT last_CPS;			// last calculated CPS
-	} __attribute__((packed));
+	};
+
+CNET_PACK_END
 
 #endif

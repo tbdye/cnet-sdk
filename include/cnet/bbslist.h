@@ -2,6 +2,9 @@
 #define CNET_BBSLIST
 
 #include "dates.h"
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
 
 struct   BBSItem {
    long   ID;            // serial ID of user who added entry
@@ -15,8 +18,9 @@ struct   BBSItem {
    UBYTE  Immortal;
    struct IsDate Date;
    UBYTE  killed;
-} __attribute__((packed));
+};
 
+CNET_PACK_END
 
 
 #endif

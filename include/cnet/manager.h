@@ -4,9 +4,11 @@
 #ifndef CNET_MANAGER
 	#define CNET_MANAGER
 
-
+#include <cnet/align.h>
 
 #define CNETFILEBOX "cnet:MANAGER"
+
+CNET_PACK_BEGIN
 
 // one of these exists for each file Text/Transform or DCC request/transfer/chat.
 struct FileTask_Info
@@ -76,7 +78,7 @@ struct FileTask_Info
 			LONG checksum;	// this must be 0xAAAA or file will not be processed!
 			} txfile;
 		} fti_u;
-	} __attribute__((packed));
+	};
 
 
 // defines for FileInfo_Type.type
@@ -119,9 +121,9 @@ struct TxProcess
 	char txfile[256];					// manager filename (CNET:MANAGER/xxxxxxxxxxxx)
 	struct FileTask_Info *tx_fti; // information about the file being tested and the
 											// user who initiated the test.
-	} __attribute__((packed));
+	};
 
-
+CNET_PACK_END
 
 // to have cnet's manager perform a test or transform, file a single FILLED in
 // TXFile structure to a file (with any UNIQUE filename) to CNETFILEBOX

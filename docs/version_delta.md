@@ -80,9 +80,9 @@ relevant to SDK compatibility but are recorded here for reference.
 
 ## Struct Size Verification
 
-All struct sizes compiled from the SDK headers match the expected values from
-source code comments and offset annotations. Verified by compiling and running
-a sizeof() test program on the live v5.36c Amiga system.
+All struct sizes compiled from the SDK headers match the sizes observed on a
+live CNet v5.36c Amiga system. Structs use SAS/C 2-byte (word) alignment --
+see `include/cnet/align.h`.
 
 | Structure         | SDK sizeof() | Expected | Match? |
 |-------------------|-------------|----------|--------|
@@ -92,7 +92,7 @@ a sizeof() test program on the live v5.36c Amiga system.
 | ULock             | 62          | --       | --     |
 | AccessGroup       | 156         | 156 (32+92+32) | YES |
 | KeyElement3       | 68          | --       | --     |
-| KeyElement4       | 72          | --       | --     |
+| KeyElement4       | 74          | --       | --     |
 | CNUserCache       | 14          | --       | --     |
 | SelectType        | 156         | --       | --     |
 | BaseUser          | 64          | --       | --     |
@@ -101,7 +101,7 @@ a sizeof() test program on the live v5.36c Amiga system.
 | ItemType3         | 168         | 168      | YES    |
 | ItemHeader        | 34          | 34       | YES    |
 | FreeType          | 12          | --       | --     |
-| SubboardType4     | 693         | --       | --     |
+| SubboardType4     | 696         | --       | --     |
 | CPort             | 48          | --       | --     |
 | CMessage          | 44          | --       | --     |
 | CNetCContext      | 60          | --       | --     |
@@ -110,13 +110,13 @@ a sizeof() test program on the live v5.36c Amiga system.
 | NewMailFolder     | 136         | --       | --     |
 | CNetPort          | 140         | --       | --     |
 | SerPort           | 348         | --       | --     |
-| SerPort4          | 490         | --       | --     |
-| PortData          | 15,176      | --       | --     |
-| PortDataExtension | 1,232       | --       | --     |
+| SerPort4          | 492         | --       | --     |
+| PortData          | 15,180      | --       | --     |
+| PortDataExtension | 1,238       | --       | --     |
 | PortConfig        | 24          | --       | --     |
-| NewConfig1        | 17,458      | --       | --     |
-| MainPort          | 28,312      | --       | --     |
-| MainPortExtension | 1,376       | --       | --     |
+| NewConfig1        | 17,470      | --       | --     |
+| MainPort          | 28,326      | --       | --     |
+| MainPortExtension | 1,382       | --       | --     |
 
 ### Key Offset Verification (PortData)
 

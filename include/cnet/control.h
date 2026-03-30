@@ -4,6 +4,7 @@
 
 #include "ports.h"
 #include "config.h"
+#include <cnet/align.h>
 
 /*
  * IMPStruct - IMP (Inter-Module Process) linked list node.
@@ -11,6 +12,8 @@
  * Field sizes inferred from original SDK examples; the original
  * struct definition was not shipped in public headers.
  */
+CNET_PACK_BEGIN
+
 struct IMPStruct {
    struct Node node;            // Exec list linkage
    char   Name[80];             // IMP entry name
@@ -18,7 +21,7 @@ struct IMPStruct {
    char   ProcessReply[80];     // reply port name
    UBYTE  dflag;                // display flag
    UBYTE  pflag;                // process flag
-} __attribute__((packed));
+};
 
 struct   PortConfig {
    UBYTE   online;         // port loaded or not
@@ -36,7 +39,7 @@ struct   PortConfig {
    UBYTE   lace;           // 0=none, 1=24 line, 2=49 line
 
    USHORT   sizes[8];      // workbench window & zoom size
-} __attribute__((packed));
+};
 
 #define SCR_OPEN_PERMANENT  1
 #define SCR_OPEN_FORCALL    2
@@ -122,7 +125,7 @@ struct MainPortExtension
 	short telnetd_acnt;			// count of autoloaded telnetd ports
 
 	struct List TxProcessList;	// list of active file test/transform processes
-   } __attribute__((packed));
+   };
 
 struct MainPort {          // common, public to all ports
                            // the same msgport that Findport("cnetport")
@@ -274,7 +277,9 @@ struct MainPort {          // common, public to all ports
    struct Task   *yanktask;               // pointer to yank-task task structure
 
    struct MainPortExtension *MPE;         // MainPort data extensions - see struct MainPortExtension above.
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 #define HIPORT_MAX 99 // highest port that can be loaded..
 

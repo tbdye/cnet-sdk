@@ -71,6 +71,7 @@
 #include <cnet/doors.h>
 #include <cnet/subs.h>
 #include <cnet/control.h>
+#include <cnet/align.h>
 
 /* Globals from door_init.c */
 extern struct PortData *z;
@@ -791,6 +792,8 @@ UBYTE GetFileDate(char *file, struct IsDate *ModDate)
  * TODO: Replace with actual IsDate5 struct when its definition is
  * located.  For now, this stores the full year in the first two bytes.
  */
+CNET_PACK_BEGIN
+
 struct IsDate5 {
     USHORT Year;    /* full year, e.g. 2026 */
     UBYTE  Month;
@@ -799,7 +802,9 @@ struct IsDate5 {
     UBYTE  Minute;
     UBYTE  Second;
     UBYTE  pad;
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 UBYTE GetFileDateY2K(char *file, struct IsDate5 *ModDate)
 {

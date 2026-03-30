@@ -7,6 +7,7 @@
 	#define NNTP_NO_SOCKET        -1
 #endif // SMTP_RC_CODES
 
+#include <cnet/align.h>
 
 #include <ctype.h>
 #ifndef __GNUC__
@@ -45,6 +46,8 @@
  * structure used to keep track of NNTP Dupetables during an
  * NNTPGet session.
  **************************************************************************/
+CNET_PACK_BEGIN
+
 struct NNTPDupeTab
    {
    char *ArticleID;           // pointer to malloc'd article ID - allows
@@ -52,8 +55,9 @@ struct NNTPDupeTab
                               // article ID length is 512 bytes.
 
    struct NNTPDupeTab *next;  // pointer to next instance of struct NNTPDupeTab
-   } __attribute__((packed));
+   };
 
+CNET_PACK_END
 
 /**************************************************************************
  * See also:

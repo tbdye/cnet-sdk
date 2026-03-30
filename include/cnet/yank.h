@@ -2,6 +2,9 @@
 #ifndef CNET_YANK
 #define CNET_YANK
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
 
 struct	YankData5
 	{
@@ -32,7 +35,7 @@ struct	YankData5
 	short	sorder[240];
 
 	char	gmPath[128];	// full path to _mhead4 & _mtext4 folder files
-	} __attribute__((packed));
+	};
 
 struct	YankData
 	{
@@ -58,7 +61,7 @@ struct	YankData
 	short	sorder[240];
 
 	char	gmPath[128];	// full path to _mhead4 & _mtext4 folder files
-	} __attribute__((packed));
+	};
 
 
 struct YankType5
@@ -75,7 +78,7 @@ struct YankType5
 	BYTE expansion[2];
 
 	UBYTE	status, globreak;
-} __attribute__((packed));
+};
 
 struct YankType
 	{
@@ -88,7 +91,8 @@ struct YankType
 
 	struct	IsDate	Submitted;
 	UBYTE	status, globreak;
-} __attribute__((packed));
+};
 
+CNET_PACK_END
 
 #endif

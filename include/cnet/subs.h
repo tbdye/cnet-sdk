@@ -1,6 +1,8 @@
 #ifndef CNET_SUBS_H
 #define CNET_SUBS_H
 
+#include <cnet/align.h>
+
 #define HIGH_ITEM_LIMIT 4000 // absolute maximum number of items per subboard
                              // This is a Perspective Software limit that will
                              // be removed in the near future, which is why
@@ -10,6 +12,8 @@
                              // This means 240 subboards allowed per list/subboard
                              // Will be removed for CNet/5 also.
 
+
+CNET_PACK_BEGIN
 
 // Select list structure
 struct SelectType
@@ -36,7 +40,7 @@ struct SelectType
    ULONG          Number;           // For regular selection, this is the same as ItemHeader.Number
                                     // For upload list, this is ordinal item number on current list
                                     // NOTE: Only during uploads is z->Upload[x].Number is set to item number +1.
-   } __attribute__((packed));
+   };
 
 #define ST_AKILL_AMAINT   1 // mark for amaint deletion when downloaded
 #define ST_AKILL_YANK     2 // Yank
@@ -71,7 +75,7 @@ struct BaseUser
    short   tome1;      /* while "online" */
 
    char   expansion[12];
-} __attribute__((packed));
+};
 
 #define BUJ_DROPPED -1
 #define BUJ_SUBDEF   0
@@ -133,7 +137,7 @@ struct HeaderType
 
    long   Next;
    long   Previous;
-   } __attribute__((packed));
+   };
 
 
 
@@ -149,7 +153,7 @@ struct   MessageType3
 
    UBYTE   Imported;
    UBYTE   IsFile;
-   } __attribute__((packed));
+   };
 
 
 
@@ -222,7 +226,7 @@ struct   ItemType3
 
    long   InfoX;              /* 160 pointer into _Short */
    long   InfoLen;            /* 164 */
-   } __attribute__((packed));
+   };
 
 #define ITEMTYPE_INTEGRITY_UNTESTED 0 // not tested
 #define ITEMTYPE_INTEGRITY_PASSED   1 // passed
@@ -249,7 +253,7 @@ struct   ItemHeader
 
    UBYTE   TitleSort[9];
    UBYTE   Killed;
-} __attribute__((packed));
+};
 
 
 struct FreeType
@@ -257,7 +261,7 @@ struct FreeType
    long   start;
    long   length;
    struct   FreeType *next;
-} __attribute__((packed));
+};
 
 
 
@@ -451,9 +455,9 @@ struct SubboardType4
    char   SubDoing[17];       /* 663 - String to be set for the Where/Action/DOING string in WHO display when use enters this subboard object */
    ULONG  SerNum;             // "physical" subboard number
    BYTE   more_stuff[10];
-} __attribute__((packed));                     /* total length = ??? */
+};                     /* total length = ??? */
 
-
+CNET_PACK_END
 
 // Marker flags
 

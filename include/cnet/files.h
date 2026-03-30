@@ -2,6 +2,10 @@
 #ifndef CNET_FILES
 #define CNET_FILES
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 struct CNetFileEntry
 	{
 	struct CNetFileEntry *DirHeader; // pointer to entry containing the root dir info
@@ -23,7 +27,9 @@ struct CNetFileEntry
 	struct CNetFileEntry *child;		// subdirectory - NULL if none
 	struct CNetFileEntry *prevfile;	// previous file - NULL if none
 	struct CNetFileEntry *nextfile;	// next file - NULL if none
-	} __attribute__((packed));
+	};
+
+CNET_PACK_END
 
 #define CNFE_TYPE_FILE 0 // regular file
 #define CNFE_TYPE_DIR  1 // subdirectory

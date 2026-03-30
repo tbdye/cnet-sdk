@@ -17,6 +17,7 @@
 #define CNET_MAIL_H
 
 #include "dates.h"
+#include <cnet/align.h>
 
 /*
  * OldMailHeader - legacy mail header (pre-v4.12)
@@ -24,6 +25,8 @@
  * Exact size unknown; padded to 256 bytes as a safe upper bound
  * based on typical BBS mail header sizes.
  */
+CNET_PACK_BEGIN
+
 struct OldMailHeader {
     char From[36];
     char To[36];
@@ -36,7 +39,7 @@ struct OldMailHeader {
     short FromAccount;
     short ToAccount;
     UBYTE expansion[84];
-} __attribute__((packed));
+};
 
 /*
  * MailHeader4 - v4.12+ mail header
@@ -60,7 +63,7 @@ struct MailHeader4 {
     char UUCP_From[32];
     char UUCP_To[32];
     UBYTE expansion[240];
-} __attribute__((packed));
+};
 
 /*
  * NewMailFolder - mail folder structure
@@ -73,7 +76,9 @@ struct NewMailFolder {
     UBYTE temporary;
     UBYTE expansion[63];
     struct NewMailFolder *next;
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 /* Forward declarations for pointer-only types */
 struct MailAlias;

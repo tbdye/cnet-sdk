@@ -1,6 +1,8 @@
 #ifndef CNET_FTP_H
 #define CNET_FTP_H
 
+#include <cnet/align.h>
+
 // defs for cnFTP anf cnFTPd
 
 #define   FTP_BLKSIZE   2048         // packet size for file I/O
@@ -42,6 +44,8 @@
 #define   CMD_PASV   21
 #define   CMD_FMAINT 22
 
+
+CNET_PACK_BEGIN
 
 struct ftpserv
 	{
@@ -89,7 +93,7 @@ struct ftpserv
 
 	char PctStr[4];		// ASCII coded file progress (in %)
 	char CPS[20];			// ASCII coded CPS (in bytes)
-	} __attribute__((packed));
+	};
 
 // mutually exclusive settings for ftpserv.ttype
 #define TTYPE_PUT 0x01 // incoming txfer
@@ -120,8 +124,9 @@ struct FTPProcess
 
 	char AcctStr[12];        // ASCII coded account #..
 	int LastCmdIdx;          // index into command table
-   } __attribute__((packed));
+   };
 
+CNET_PACK_END
 
 // FTP error strings
 #define FTPERR_EINTR "system call interrupted"

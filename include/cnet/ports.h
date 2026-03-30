@@ -13,6 +13,7 @@
 #include "lists.h"
 #include "links.h"
 #include "telnet.h"
+#include <cnet/align.h>
 
 
 /*
@@ -69,6 +70,8 @@
 #define PITEM_MAX 8 /* maximum z->npitems value.. */
 
 
+CNET_PACK_BEGIN
+
 struct CNetPort
 	{
    char   UserName[32];
@@ -81,7 +84,7 @@ struct CNetPort
 
    USHORT   Port;
    USHORT   Access;
-	} __attribute__((packed));
+	};
 
 
 #define PORTRIGHT_HIDDEN       0x0001
@@ -126,7 +129,7 @@ struct SerPort
    UBYTE   other[2];
 
    UBYTE   null;      /* local terminal, no clear line */
-   } __attribute__((packed));
+   };
 
 
 // revised 28-Feb-98!
@@ -165,7 +168,7 @@ struct SerPort4
    long   portflags;    // 23-Apr-97
 
    BYTE expansion[103];
-   } __attribute__((packed));
+   };
 
 /*
  * SerPort4.portflags defines
@@ -899,7 +902,7 @@ struct PortData {                   // each opened ports global vars
    struct MailHeader4   OMail0;     // general purpose mailheader (not a pointer!) - used for outgoing/incoming mail and mailread
    struct SignalSemaphore masem;    // semaphore for locking Aliases list
    struct SignalSemaphore rmhsem;   // semaphore for locking the mail header list
-} __attribute__((packed));
+};
 
 
 /*
@@ -946,8 +949,9 @@ struct PortDataExtension
 	struct TelnetdPort *telnetdata;    // data for this port's telnetd connection
 	                                   // telnetd allocates this & the port frees
                                       // it @ logoff.
-   } __attribute__((packed));
+   };
 
+CNET_PACK_END
 
 #define DM_FLAG_DIRMAINT  0x01 // full maint over-rides this flag
 #define DM_FLAG_CDROM     0x02 // use CDROM temp dir

@@ -6,6 +6,9 @@
 // netincludes containing typedefs & "struct sockaddr_in"
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
 
 // each host entry in the sysdata:bbs.tnhost file is parsed and entered into
 // list of TNHostEntry structures.
@@ -21,7 +24,7 @@ struct TNHostEntry
 	LONG he_status;				// ??? - status of host (ie. &128 = killed)
 	BYTE he_expansion[100];			// future expansion
 	struct TNHostEntry *next;	// 132 - pointer to next TNHostEntry (dynamic)
-	} __attribute__((packed));
+	};
 
 
 // The new GLOBAL host addressbook entry.
@@ -54,7 +57,7 @@ struct HostEntry5
 
 	BYTE he_expansion[100];		// future expansion
 	struct TNHostEntry *next;	// 132 - pointer to next TNHostEntry (dynamic)
-	} __attribute__((packed));
+	};
 
 
 
@@ -106,8 +109,9 @@ struct TelnetdPort
 	int fsm_state;				// current local telnet state options if applicable
 
 	BYTE sigbit;				// signal bit for asynchronous socket event notification
-   } __attribute__((packed));
+   };
 
+CNET_PACK_END
 
 // *_ts bits
 #define TOPT_LINE  0

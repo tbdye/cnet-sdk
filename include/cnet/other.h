@@ -1,6 +1,8 @@
 #ifndef CNET_OTHER_H
 #define CNET_OTHER_H
 
+#include <cnet/align.h>
+
 #define TOP_STAT 51
 #define TOP_NOSTAT 11
 
@@ -25,13 +27,15 @@
 
 #define EVER ;;
 
+CNET_PACK_BEGIN
+
 struct MarkType
 	{
 	short	sub;				// The new system can uniquely 
 	ULONG	ItemNumber;		// identify a message with this
 	long	Seek;				// information.  Used for Z/ZG.
 	ULONG	Number;
-	} __attribute__((packed));
+	};
 
 struct TransType
 	{
@@ -45,6 +49,8 @@ struct TransType
 
 	short	menustart[50];			// RayNote: THIS is the reason for the 50 menu limit!!!
 	short	menulen  [50];			//          MUST be broken for CNet/5!!
-	} __attribute__((packed));
+	};
+
+CNET_PACK_END
 
 #endif /* CNET_OTHER_H */

@@ -2,6 +2,8 @@
 #ifndef CNET_CONFIG
 #define CNET_CONFIG
 
+#include <cnet/align.h>
+
 #define CONFIG_MSGPORT      "cnetconfig"
 
 #define CONFIG_MAILTASK 	 "cnet:configs/Mail-Task.cfg\0"
@@ -24,6 +26,8 @@
 #define CONFIG_ARCHIVERS    "cnet:configs/archivers"
 
 
+CNET_PACK_BEGIN
+
 struct LogType
 	{
 	char  name  [10];
@@ -33,7 +37,7 @@ struct LogType
 
 	UBYTE flag;
 	UBYTE other;
-	} __attribute__((packed));
+	};
 
 struct   FidoType
 	{
@@ -52,7 +56,7 @@ struct   FidoType
 	char  NetOrigin[76];
 	USHORT   Pointnet;
 	USHORT   HiZone;
-	} __attribute__((packed));
+	};
 
 struct   ProtoType
 	{
@@ -61,7 +65,7 @@ struct   ProtoType
 	short Flags;
 	char  One[2];
 	char  Path[22];
-	} __attribute__((packed));
+	};
 
 struct   ArcType
 	{
@@ -74,7 +78,7 @@ struct   ArcType
 
 	long  Row;
 	long  Column;
-	} __attribute__((packed));
+	};
 
 // new for 4.12
 struct   NewArcType
@@ -91,7 +95,7 @@ struct   NewArcType
 
 	char  DizExtract[64];   /* CNet does a "CD <Config1.RAMpath>" before extracting */
 	char  DizAdd[64];       /* CNet does a "CD <Config1.RAMpath>" before adding */
-	} __attribute__((packed));
+	};
 
 struct   ArcType4
 	{
@@ -112,7 +116,7 @@ struct   ArcType4
 
 	UBYTE ViewType;			// type of online viewer.  See ARCVT_* defs below
 	BYTE	expansion[63];
-	} __attribute__((packed));
+	};
 
 
 // defines for Archiver ViewTypes
@@ -128,7 +132,7 @@ struct   EditorType
 	char  name[20];
 	char  path[32];
 	long  flags;
-	} __attribute__((packed));
+	};
 
 struct   Config1
 	{
@@ -244,7 +248,7 @@ struct   Config1
 	char  DiskUpload[40];
 
 	char  Nodelist  [40];
-	} __attribute__((packed));
+	};
 
 
 // used for CNet/4
@@ -412,7 +416,7 @@ struct   NewConfig1
 									// as the longest BBSTEXT line!  (See Config/Limits)
 
 	char NewsPath[80];		// 23-Apr-97: Path to NEWS directory.
-	} __attribute__((packed));
+	};
 
 
 struct ConfigExtension
@@ -465,7 +469,7 @@ struct ConfigExtension
 
 	ULONG	newstimeout;			// news-task timeout to check for spooled news send
 										// in seconds
-	} __attribute__((packed));
+	};
 
 #define SMTPD_MINTIMEOUT 60
 #define UDATA_CACHE_ALL  -1
@@ -485,7 +489,7 @@ struct ServTaskConfig
 
 	// 24-Jan-97
 	short hidestate;		// should never be 0 - see control.h TASK_UP_* defines
-	} __attribute__((packed));
+	};
 
 
 // added 11-Jan-97
@@ -500,7 +504,7 @@ struct CNetScreenInfo
 	WORD Height;
 	struct ColorMap *colormap; // screen's colormap
 	struct TextAttr Font;      // font used for Title/drag-bar rendering
-	} __attribute__((packed));
+	};
 
 
 struct OtherStuff
@@ -529,6 +533,8 @@ struct OtherStuff
 	               // TASK_UP_HIDDEN    = cx_hide only
 
 	char	expansion[63];
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 #endif

@@ -1,6 +1,10 @@
 #ifndef CNET_WINSCREEN_H
 #define CNET_WINSCREEN_H
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 struct WinStruct
 	{
 	struct Window *Window;
@@ -20,13 +24,15 @@ struct WinStruct
 	LONG BlockCnt;
 	ULONG WS_Flags;
 	BOOL NW_Reset;
-	} __attribute__((packed));
+	};
 
 struct WindowFont
 	{
 	struct TextFont *wf_CurrentFont;		// pointer to the currently opened window font, or NULL if none
 	struct TextAttr wf_TextAttr;			// font spec
 	BOOL Changed;								// true if changed by user
-	} __attribute__((packed));
+	};
+
+CNET_PACK_END
 
 #endif /* CNET_WINSCREEN_H */
