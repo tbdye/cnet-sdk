@@ -3,7 +3,9 @@
 #define CNET_USERS
 
 #include "dates.h"
+#include <cnet/align.h>
 
+CNET_PACK_BEGIN
 
 struct Privs {             /* each user&group has one */
    long   MBaseFlags;      /* 580 */
@@ -61,7 +63,7 @@ struct Privs {             /* each user&group has one */
 
    short   Alias;          /* 668 */
    short   Dictionary;     /* 670 */
-} __attribute__((packed));
+};
 
 /* LONG Aligned, total length==672 */
 
@@ -178,7 +180,7 @@ struct UserData {               /* each user account */
    BYTE   AutoHide;
    BYTE   MailSort;             /* 579 */
    struct   Privs MyPrivs;      /* 580 THESE ACTUALLY USED, not AGC */
-} __attribute__((packed));
+};
 
 
 
@@ -318,7 +320,7 @@ struct ULock {                  /* account locking node!!! */
    struct   UserData *u;
 
    struct   ULock *Next;
-} __attribute__((packed));
+};
 
 struct AccessGroup {
    char   Name[32];             /*   0 */
@@ -328,7 +330,7 @@ struct AccessGroup {
    UBYTE   ExpireAccess;        /*  32+94 */
 
    char   exp[29];
-} __attribute__((packed));
+};
 
 struct KeyElement3 {
    char   UUCP[8];
@@ -337,12 +339,12 @@ struct KeyElement3 {
    char   Handle   [21];
    char   RealName [26];
    UBYTE   PName;
-} __attribute__((packed));
+};
 
 struct OldKeyElement {
    char   Handle[22];           /* actual user handle */
    short   HandleX;             /* account number where found */
-} __attribute__((packed));
+};
 
 struct KeyElement4 {
    char   UUCP[11];             // 10 characters allowed in UUCP name - plus terminating 0 byte
@@ -353,7 +355,7 @@ struct KeyElement4 {
    UBYTE   PName;
 
    BYTE Access;                 // user's access group!
-} __attribute__((packed));
+};
 
 
 // CNUserCache is a READ ONLY system structure!!
@@ -369,6 +371,8 @@ struct CNUserCache
    short account;               // account number of cached user instance.
    LONG accessed;               // CNet long value representing time data last accessed (read or write)
    struct CNUserCache *next;    // pointer to next instance of CNUserCache
-   } __attribute__((packed));
+   };
+
+CNET_PACK_END
 
 #endif

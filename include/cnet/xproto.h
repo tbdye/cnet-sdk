@@ -7,6 +7,8 @@
 #ifndef CNET_XPROTO_H
 #define CNET_XPROTO_H
 
+#include <cnet/align.h>
+
 /*
  * SAS/C uses "__asm" and "register __aX/__dX" for register-parameter
  * function pointers. GCC m68k-amigaos uses a different syntax.
@@ -18,6 +20,8 @@ struct XPR_UPDATE;
 /*
 *   The structure
 */
+CNET_PACK_BEGIN
+
 #ifdef __GNUC__
 struct XPR_IO {
 		  /* File name(s) */
@@ -84,7 +88,7 @@ struct XPR_IO {
 		  long (*xpr_squery)(void);
 		  /* Get various host ptrs */
 		  long (* xpr_getptr)(long type __asm__("d0"));
-	      } __attribute__((packed));
+	      };
 #else /* SAS/C */
 struct XPR_IO {
 		  /* File name(s) */
@@ -153,7 +157,7 @@ struct XPR_IO {
 		  long (*xpr_squery)(void);
 		  /* Get various host ptrs */
 		  long (* __asm xpr_getptr)(register __d0 long type);
-	      } __attribute__((packed));
+	      };
 #endif /* __GNUC__ */
 /*
 *   Number of defined extensions
@@ -196,7 +200,7 @@ struct XPR_UPDATE {	long  xpru_updatemask;
 			long  xpru_reserved3;
 			long  xpru_reserved4;
 			long  xpru_reserved5;
-		   } __attribute__((packed));
+		   };
 /*
 *   The possible bit values for the xpru_updatemask are:
 */
@@ -225,7 +229,10 @@ struct xpr_option {
    long  xpro_type;		/* type of option			      */
    char *xpro_value;		/* pointer to a buffer with the current value */
    long  xpro_length;		/* buffer size				      */
-} __attribute__((packed));
+};
+
+CNET_PACK_END
+
 /*
 *   Valid values for xpro_type are:
 */

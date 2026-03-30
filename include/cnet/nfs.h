@@ -1,6 +1,8 @@
 #ifndef CNET_NFS_H
 #define CNET_NFS_H
 
+#include <cnet/align.h>
+
 #define INDEX_NONE 0
 #define INDEX_ALPHA 1
 #define INDEX_DATE 2
@@ -8,6 +10,8 @@
 
 #define FILEFLAG_UNISUB (1<<0)
 #define FILEFLAG_FORCEALPHA  (1<<1)
+
+CNET_PACK_BEGIN
 
 struct	SubboardType {
 	ULONG	key;		/* unique subboard ID */
@@ -103,23 +107,23 @@ struct	SubboardType {
 	BYTE	SBaseUse;		/* which BBSCHARGE rate to use? */
 	UBYTE	CarbonCopy;		/* */
 	UBYTE	CDROM;			/* copy to hard drive before download? */
-} __attribute__((packed));
+};
 
 struct AreaManagerUserInfo {
 	char	path[80];
 	char	Access;
-} __attribute__((packed));
+};
 
 struct FileListType {
 	char	filename[31];
 	char	deleted;
 
 	ULONG	area, item;
-} __attribute__((packed));
+};
 
 struct FileIndexNode {
 	ULONG	fi[512];
-} __attribute__((packed));
+};
 
 struct FileListBase {
 	struct	SignalSemaphore sem;
@@ -131,7 +135,7 @@ struct FileListBase {
 	USHORT	numlocks;
 	UBYTE	savekeys;
 	UBYTE	exclusive;
-} __attribute__((packed));
+};
 
 struct FileListHandle {
 	char	root[80];
@@ -148,7 +152,7 @@ struct FileListHandle {
 	UBYTE	beenthere[1024];	/* physical visited areas */
 
 	ULONG	flags;
-} __attribute__((packed));
+};
 
 struct	ItemType {
 	ULONG	key;
@@ -202,7 +206,7 @@ struct	ItemType {
 						4 == Protected */
 
 	char	deleted;
-} __attribute__((packed));
+};
 
 struct	MessageType {
 	ULONG	ItemKey;
@@ -232,7 +236,7 @@ struct	MessageType {
 	UBYTE	Received;
 	UBYTE	deleted;
 	UBYTE	isfile;
-} __attribute__((packed));
+};
 
 struct	ItemKey {
 	ULONG	key;
@@ -247,19 +251,19 @@ struct	ItemKey {
 	ULONG	freshest;
 
 	char	deleted;
-} __attribute__((packed));
+};
 
 struct	ItemKeyNode {
 	struct	ItemKey ik[128];
-} __attribute__((packed));
+};
 
 struct	ItemIndexNode {
 	USHORT	ii[128];
-} __attribute__((packed));
+};
 
 struct	MessageKeyNode {
 	USHORT	mk[128];
-} __attribute__((packed));
+};
 
 struct	AreaPublic {
 	struct	AreaPublic *next, *prev;
@@ -279,7 +283,7 @@ struct	AreaPublic {
 	struct	SignalSemaphore sem;
 
 	char	saveikeys, savemkeys;
-} __attribute__((packed));
+};
 
 struct	AreaHandle {
 	struct	AreaPublic *ap;
@@ -300,7 +304,7 @@ struct	AreaHandle {
 	ULONG	tick;
 
 	char	indextype;
-} __attribute__((packed));
+};
 
 struct AreaKey {
 	ULONG	key;
@@ -317,12 +321,12 @@ struct AreaKey {
 
 	char	handle[11];
 	char	deleted;
-} __attribute__((packed));
+};
 
 struct AreaUserItem {
 	ULONG	key;
 	ULONG	date;
-} __attribute__((packed));
+};
 
 struct AreaManagerArea {
 	struct	AreaManagerArea *next, *prev;
@@ -332,18 +336,18 @@ struct AreaManagerArea {
 
 	USHORT	numlocks;
 	char	saveuitems;
-} __attribute__((packed));
+};
 
 struct AreaUser {
 	ULONG	key;
 	ULONG	date;
-} __attribute__((packed));
+};
 
 struct AreaUserNode {
 	struct	AreaUser au[128];
 
 	USHORT	index[128];
-} __attribute__((packed));
+};
 
 struct AreaManagerUser {
 	struct	AreaManagerUser *next, *prev;
@@ -357,11 +361,11 @@ struct AreaManagerUser {
 	struct	AreaManagerUserInfo mui;
 	USHORT	ns;
 	char	saveukeys;
-} __attribute__((packed));
+};
 
 struct AreaKeyNode {
 	struct	AreaKey ak[128];
-} __attribute__((packed));
+};
 
 struct AreaManagerBase {
 	struct	SignalSemaphore sem;
@@ -377,7 +381,7 @@ struct AreaManagerBase {
 	USHORT	ns;
 	char	exclusive;
 	char	saveakeys;
-} __attribute__((packed));
+};
 
 // Need a call to 'revert' back to managed lock info?  If Open fails?
 
@@ -397,7 +401,9 @@ struct	AreaManagerLock {
 	USHORT	ps;		/* phys pos. */
 	USHORT	cs;		/* current logical pos.  0==None */
 	USHORT	top;
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 long LockItem( struct AreaHandle *ah );
 long UnLockItem( struct AreaHandle *ah );

@@ -4,12 +4,14 @@
 #ifndef CNET_NEWSMANAGER
 	#define CNET_NEWSMANAGER
 
-
+#include <cnet/align.h>
 
 #define CNETNEWSBOX "cnet:NEWSMAN"
 
 // defines for ProcessType of struct NRQFile
 #define NRQ_POST 0x01
+
+CNET_PACK_BEGIN
 
 struct NRQFile
 	{
@@ -31,8 +33,9 @@ struct NRQFile
 								// RFC-822 format
 
 	UBYTE Flags;			// See NRQ_* bits above
-	} __attribute__((packed));
+	};
 
+CNET_PACK_END
 
 // to have cnet's newsmanager perform a post, file a single FILLED in
 // NRQFile structure to a file (with any UNIQUE filename with a .NRQ

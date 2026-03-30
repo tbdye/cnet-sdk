@@ -1,10 +1,14 @@
 #ifndef CNET_INTERNET_H
 #define CNET_INTERNET_H
 
+#include <cnet/align.h>
+
 // ---------------- internet structures used by CNet/4+ Pro-------------------
 // **     FIRST APPEARED in CNet V4.2bR2 (post final-beta version)
 
 
+
+CNET_PACK_BEGIN
 
 // config structure saved as a **header** in mail:users/xxx/prefs/cnirc
 // following this structure - on disk - are server, info and auto-join channel
@@ -16,7 +20,7 @@ struct IrcUserConfig
 	struct List *serverlist;	// Exec list of servers to autojoin - currently internal use only
                               // may be read directly from user cnirc config
                               // file.
-	} __attribute__((packed));
+	};
 
 
 
@@ -26,7 +30,7 @@ struct ServerNode
 	struct Node snode;	// IP/hostname in snode.ln_Name
 	char sinfo[36];		// textual description of server
 	char channel[40];		// autojoin channel
-	} __attribute__((packed));
+	};
 
 
 // NEW 4.26c+ server structure used internally by CNetIRC
@@ -38,7 +42,7 @@ struct ServerNode1
 	char RealName[31];	// max length = 30
 	char NickName[21];	// max length = 10
 	char QuitMsg[80];	// msg to print when quitting - maxlength = 79
-	} __attribute__((packed));
+	};
 
 
 // identd structure saved in linked list myp->MPE->idd
@@ -57,7 +61,7 @@ struct IdentdData
 	unsigned int socket;	// local port owned by user
 	short port;	   // local user's CNet port number
 	struct IdentdData *next;
-	} __attribute__((packed));
+	};
 
 
 // structure currently used by Telnetd's IP blocking functions
@@ -78,6 +82,8 @@ struct InternetBlock
                         // eg. ipbits1.ipbits2.ipbits3.ipbits4
                         //     aol.com
                         //     192.0-50.#?.#?
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 #endif /* CNET_INTERNET_H */

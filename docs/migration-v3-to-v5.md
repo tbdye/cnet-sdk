@@ -302,7 +302,7 @@ If the v3 source code uses struct member names (not hardcoded offsets) and does 
 
 ## cnet.h Offset Comments
 
-The offset comments in v3 `cnet.h` (and carried forward into some v5 headers) are **not authoritative**. Verified discrepancies exist between the comments and the actual binary layouts. Always rely on `sizeof()` and `offsetof()` measurements, or on the `__attribute__((packed))` struct definitions in the SDK headers, rather than the inline comments.
+The offset comments in v3 `cnet.h` (and carried forward into some v5 headers) are **not authoritative**. Verified discrepancies exist between the comments and the actual binary layouts. Always rely on `sizeof()` and `offsetof()` measurements, or on the struct definitions in the SDK headers (which use SAS/C 2-byte alignment -- see `include/cnet/align.h`), rather than the inline comments.
 
 ## Summary Checklist for Porting v3 Doors
 

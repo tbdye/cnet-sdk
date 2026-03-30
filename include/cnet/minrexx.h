@@ -1,6 +1,8 @@
 #ifndef CNET_MINREXX_H
 #define CNET_MINREXX_H
 
+#include <cnet/align.h>
+
 // Some macro definitions
 
 #define RXSNAME  "rexxsyslib.library"
@@ -60,9 +62,13 @@
 //   dynamically) that should be terminated with an entry with
 //   NULL for the name . . .
 //
+CNET_PACK_BEGIN
+
 struct rexxCommandList {
    char *name ;
    char *(*userdata)() ;
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 #endif /* CNET_MINREXX_H */

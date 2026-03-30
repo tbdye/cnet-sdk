@@ -1,6 +1,8 @@
 #ifndef CNET_SMTP_H
 #define CNET_SMTP_H
 
+#include <cnet/align.h>
+
 #define SMTP_CMD_HELO               "HELO"
 #define SMTP_CMD_EHLO               "EHLO"
 #define SMTP_CMD_QUIT               "QUIT"
@@ -46,6 +48,8 @@
 #define SMTPERR_CMD_REJECT          "Command rejected: %s\n"
 
 
+CNET_PACK_BEGIN
+
 struct SMTPProcess
    {
    struct Process *process; // SMTP process pointer - could be a pointer to any one of 32
@@ -59,7 +63,7 @@ struct SMTPProcess
 
 	char status[80];		// current status of process, for display in GUI
 	APTR entry;				// pointer to BGUI LV entry
-   } __attribute__((packed));
+   };
 
 
 struct SMTPHostStruct
@@ -67,7 +71,7 @@ struct SMTPHostStruct
    char HostName[128];  // 64 is max domain length expected according to RFC-822
                         // 128 used in case of expansion. May be either Hostname
                         // or IP.
-   } __attribute__((packed));
+   };
 
 struct SpamStruct
    {
@@ -80,7 +84,9 @@ struct SpamStruct
                         // eg. ipbits1.ipbits2.ipbits3.ipbits4
                         //     aol.com
                         //     192.0-50.#?.#?
-   } __attribute__((packed));
+   };
+
+CNET_PACK_END
 
 #define SMTPSESS_HELORECVD	(1L << 1)
 

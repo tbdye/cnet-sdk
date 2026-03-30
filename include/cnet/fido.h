@@ -2,11 +2,15 @@
 #ifndef CNET_FIDO
 #define CNET_FIDO
 
+#include <cnet/align.h>
+
 #define PRIVATE		0x0001
 #define CRASH		0x0002
 #define HOLD		0x0200
 #define FILEREQUEST	0x0800
 #define FILESEND	0x0010
+
+CNET_PACK_BEGIN
 
 struct FidoNet {
 	char from[36];
@@ -26,7 +30,7 @@ struct FidoNet {
 	USHORT replyto;
 	USHORT attribute;
 	USHORT nextrply;
-} __attribute__((packed));
+};
 
 struct PacketHeader {
 	USHORT	orignode;
@@ -42,7 +46,7 @@ struct PacketHeader {
 	USHORT	orignet;
 	USHORT	destnet;
 	char	fill[34];
-} __attribute__((packed));
+};
 
 struct PackedMessage {
 	USHORT	two_oh;
@@ -53,7 +57,7 @@ struct PackedMessage {
 	USHORT	attribute;
 	USHORT	cost;
 	char	date[20];
-} __attribute__((packed));
+};
 
 struct NodeType {			// a node that we export-to
 	char	*buffer;
@@ -81,7 +85,7 @@ struct NodeType {			// a node that we export-to
 	ULONG	outcount;
 
 	char	Password[12];
-} __attribute__((packed));
+};
 
 struct RouteType
 	{
@@ -101,7 +105,7 @@ struct RouteType
 	USHORT	more[4];
 
 	ULONG	outcount;
-	} __attribute__((packed));
+	};
 
 
 struct PacketType5
@@ -112,7 +116,7 @@ struct PacketType5
 
 	ULONG date;
 	BYTE expansion[2];
-	} __attribute__((packed));
+	};
 
 struct PacketType
 	{
@@ -120,7 +124,7 @@ struct PacketType
 
 	char	filename[32];
 	struct	IsDate date;
-	} __attribute__((packed));
+	};
 
 
 
@@ -141,7 +145,7 @@ struct ImportType5
 	BYTE expansion[2];
 
 	UBYTE	isdupe, isfull;
-	} __attribute__((packed));
+	};
 
 struct ImportType
 	{
@@ -159,7 +163,7 @@ struct ImportType
 	struct	IsDate date;
 
 	UBYTE	isdupe, isfull;
-	} __attribute__((packed));
+	};
 
 struct	DupeType
 	{
@@ -168,7 +172,7 @@ struct	DupeType
 	USHORT	node;
 	USHORT	point;
 	ULONG	data;
-	} __attribute__((packed));
+	};
 
 struct	EchoType
 	{
@@ -194,7 +198,7 @@ struct	EchoType
 	UBYTE	other[3];
 
 	char	Info[48];
-	} __attribute__((packed));
+	};
 
 struct	EchoType4
 	{
@@ -220,8 +224,9 @@ struct	EchoType4
 	UBYTE	other[3];
 
 	char	Info[48];
-	} __attribute__((packed));
+	};
 
+CNET_PACK_END
 
 
 #endif

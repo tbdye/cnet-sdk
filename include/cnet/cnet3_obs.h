@@ -1,6 +1,10 @@
 #ifndef CNET_CNET3_OBS_H
 #define CNET_CNET3_OBS_H
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 // CNet/3 subboard structure
 struct NewSubboardType
    {
@@ -161,7 +165,7 @@ struct NewSubboardType
    UBYTE   resetIP;       // 470 - set to TRUE to have CNet reset item pointers
 
    char   more_stuff[17]; // 471
-} __attribute__((packed));
+};
 
 
 struct OldMessageType
@@ -175,6 +179,8 @@ struct OldMessageType
 
    UBYTE   Imported;
    UBYTE   IsFile;
-   } __attribute__((packed));
+   };
+
+CNET_PACK_END
 
 #endif /* CNET_CNET3_OBS_H */

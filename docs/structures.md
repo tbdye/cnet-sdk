@@ -1,8 +1,11 @@
 # CNet 5 SDK Structure Reference
 
 Field-by-field documentation for all major CNet data structures. All
-structs use `__attribute__((packed))` to match the original SAS/C
-byte-level binary layout.
+structs use SAS/C 2-byte (word) alignment, which is the natural
+alignment on m68k. On other architectures (x86, ARM, etc.), this
+alignment is enforced via `include/cnet/align.h`, which provides
+`CNET_PACK_BEGIN` / `CNET_PACK_END` macros wrapping
+`#pragma pack(push, 2)` / `#pragma pack(pop)`.
 
 **Offset caveat:** Header offset comments in the original SDK source are
 not authoritative and contain known errors. Offsets verified through

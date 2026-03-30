@@ -80,7 +80,7 @@ int main(int argc, char **argv)
     total++; pass += check_size("KeyElement3",
         (unsigned long)sizeof(struct KeyElement3), 68);
     total++; pass += check_size("KeyElement4",
-        (unsigned long)sizeof(struct KeyElement4), 72);
+        (unsigned long)sizeof(struct KeyElement4), 74);
     total++; pass += check_size("CNUserCache",
         (unsigned long)sizeof(struct CNUserCache), 14);
 
@@ -94,13 +94,21 @@ int main(int argc, char **argv)
 
     /* subs.h */
     total++; pass += check_size("SubboardType4",
-        (unsigned long)sizeof(struct SubboardType4), 693);
+        (unsigned long)sizeof(struct SubboardType4), 696);
 
     /* ports.h */
     total++; pass += check_size("CNetPort",
         (unsigned long)sizeof(struct CNetPort), 140);
     total++; pass += check_size("SerPort4",
-        (unsigned long)sizeof(struct SerPort4), 490);
+        (unsigned long)sizeof(struct SerPort4), 492);
+    total++; pass += check_size("PortData",
+        (unsigned long)sizeof(struct PortData), 15180);
+
+    /* control.h */
+    total++; pass += check_size("NewConfig1",
+        (unsigned long)sizeof(struct NewConfig1), 17470);
+    total++; pass += check_size("MainPort",
+        (unsigned long)sizeof(struct MainPort), 28326);
 
     CPutText("\r\n");
     sprintf(buf, "Results: %d/%d struct sizes verified.\r\n", pass, total);

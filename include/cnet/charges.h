@@ -1,6 +1,10 @@
 #ifndef CNET_CHARGES
 #define CNET_CHARGES
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 struct   ChargeType
    {
    struct   ChargeType  *next;
@@ -13,14 +17,16 @@ struct   ChargeType
 
    ULONG                fcredits;
    ULONG                bcredits;
-   } __attribute__((packed));
+   };
 
 struct   ChargeSet
    {
    struct   ChargeSet   *next;
    short                schedule;
    short                ACC[32][80];
-   } __attribute__((packed));
+   };
+
+CNET_PACK_END
 
 #endif
 

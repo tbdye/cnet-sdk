@@ -2,6 +2,8 @@
 #ifndef CNET_DOORS
 #define CNET_DOORS
 
+#include <cnet/align.h>
+
 #define CN_USERINPUT 0xff      // Message/code sent to doors when user keyboard input
                                // is waiting. see InputSignalInit() in empty.c 
 
@@ -11,6 +13,8 @@
 
 #define NUM_CNETC_ARGS 2
 #define CNETC_MAINARG  1
+
+CNET_PACK_BEGIN
 
 // setup when a C pfile is ran
 struct CPort
@@ -22,7 +26,7 @@ struct CPort
 
    UBYTE           ack;        // 44 tell CNet we've arrived
    UBYTE           align2[3];
-} __attribute__((packed));
+};
 
 
 // passed between C pfile and C-Net
@@ -38,7 +42,7 @@ struct CMessage
                               //    and CMESS_CMD_xxxxx defines below. cnetc.library
                               //    usually takes care of filling this in for us..
    UBYTE          align[3];
-} __attribute__((packed));
+};
 
 
 // defines for door CMessage commands added 11-Oct-97
@@ -114,7 +118,9 @@ struct CNetCContext
    struct CPort    *cport;      // CNet-initialized communication port
    struct MsgPort  *replyp;     // Library-allocated reply port
    struct CMessage cmess;       // CMessage struct for communication
-} __attribute__((packed));
+};
+
+CNET_PACK_END
 
 #endif
 

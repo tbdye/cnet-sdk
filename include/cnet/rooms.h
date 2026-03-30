@@ -2,6 +2,10 @@
 #ifndef CNET_ROOMS
 #define CNET_ROOMS
 
+#include <cnet/align.h>
+
+CNET_PACK_BEGIN
+
 struct RoomConfig {
 	long	Access;		/* which groups may enter */
 
@@ -35,7 +39,7 @@ struct RoomConfig {
 	UBYTE	LurkTimeout;
 
 	short	NoiseSet;
-} __attribute__((packed));
+};
 
 struct Room {
 	struct	RoomConfig rc;
@@ -48,7 +52,7 @@ struct Room {
 	UBYTE	Buffer[15000];		/* Actual I/O buffer (Q) */
 
 	UBYTE	SBuff[1024];		/* buffer for Scribe */
-} __attribute__((packed));
+};
 
 /* LONG aligned.  Total length == 304 */
 
@@ -68,7 +72,7 @@ struct RoomUser {
 	UBYTE	AllowReal;
 
 	UBYTE	expansion[25];		/* 278 */
-} __attribute__((packed));
+};
 
 struct NoiseType {
 	struct	NoiseType *next;
@@ -78,7 +82,8 @@ struct NoiseType {
 
 	char	**nn;
 	char	*args;
-} __attribute__((packed));
+};
 
+CNET_PACK_END
 
 #endif
